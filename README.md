@@ -30,3 +30,5 @@ it has little description about me.
 
 footer:
 footer part of each pages has social media linkGIT 
+
+regular signup and login page
