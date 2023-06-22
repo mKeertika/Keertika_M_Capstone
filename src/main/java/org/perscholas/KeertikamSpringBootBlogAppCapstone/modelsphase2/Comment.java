@@ -1,4 +1,6 @@
-package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
+package org.perscholas.KeertikamSpringBootBlogAppCapstone.modelsphase2;
+
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.Post;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

@@ -1,8 +1,9 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.modelsphase2.User;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 
 @Entity
