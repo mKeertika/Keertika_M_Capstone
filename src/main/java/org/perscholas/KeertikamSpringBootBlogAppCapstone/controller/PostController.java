@@ -1,7 +1,8 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
-import javax.persistence.*;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class PostController  {
 
 }
