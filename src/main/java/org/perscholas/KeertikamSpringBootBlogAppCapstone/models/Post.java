@@ -23,7 +23,8 @@ public class Post {
     @Column
     private LocalDate postUpdateDate;
 
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "userId")
     private User author;
 
 

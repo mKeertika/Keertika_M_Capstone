@@ -1,59 +1,40 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String userName;
+    private String username;
 
-    @Column
-    private String firstName;
-
-    @Column
-    private String lastName;
-
-    @Column
     private String email;
 
-    @Column
     private String password;
 
+    // Constructors
 
-//    Default Constructor
     public User() {
     }
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Post> posts =new ArrayList<>();
 
-// Getters and Setters
 
-    public String getUserName() {
-        return userName;
+    //  getters, and setters
+
+
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -72,15 +53,13 @@ public class User {
         this.password = password;
     }
 
+//    toString
 
-//    toString Method
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
