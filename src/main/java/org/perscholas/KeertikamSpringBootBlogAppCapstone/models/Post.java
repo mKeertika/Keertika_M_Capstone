@@ -31,6 +31,15 @@ public class Post {
     //    Default Constructor
     public Post() {
     }
+//parameterized constructor
+
+    public Post(String title, String content, LocalDate publicationDate, LocalDate postUpdateDate, User author) {
+        this.title = title;
+        this.content = content;
+        this.publicationDate = publicationDate;
+        this.postUpdateDate = postUpdateDate;
+        this.author = author;
+    }
 
 //    Getters and Setters
 

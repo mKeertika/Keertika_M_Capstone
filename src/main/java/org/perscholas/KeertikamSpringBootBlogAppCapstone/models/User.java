@@ -22,6 +22,15 @@ public class User {
     public User() {
     }
 
+//    Parameterized constructor
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+
+//    One to many Mapping
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Post> posts =new ArrayList<>();
 
