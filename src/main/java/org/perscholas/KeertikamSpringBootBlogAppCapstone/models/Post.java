@@ -25,7 +25,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    private User author;
+    private User user;
 
 
     //    Default Constructor
@@ -38,7 +38,7 @@ public class Post {
         this.content = content;
         this.publicationDate = publicationDate;
         this.postUpdateDate = postUpdateDate;
-        this.author = author;
+        this.user = author;
     }
 
 //    Getters and Setters
@@ -76,12 +76,12 @@ public class Post {
         this.postUpdateDate = postUpdateDate;
     }
 
-    public User getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 //    toString Method
@@ -94,7 +94,7 @@ public class Post {
                 ", content='" + content + '\'' +
                 ", publicationDate=" + publicationDate +
                 ", postUpdateDate=" + postUpdateDate +
-                ", author=" + author +
+                ", author=" + user +
                 '}';
     }
 }
