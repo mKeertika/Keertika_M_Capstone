@@ -1,7 +1,5 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.modelsphase2.User;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -10,7 +8,7 @@ import java.time.LocalDate;
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column

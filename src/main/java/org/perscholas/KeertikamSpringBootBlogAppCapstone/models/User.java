@@ -1,4 +1,4 @@
-package org.perscholas.KeertikamSpringBootBlogAppCapstone.modelsphase2;
+package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
 import javax.persistence.*;
 
