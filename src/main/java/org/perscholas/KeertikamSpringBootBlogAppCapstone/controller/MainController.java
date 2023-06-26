@@ -19,7 +19,7 @@ public class MainController {
 
     @GetMapping("/contact")
     public String contact(){
-        return "contact";
+//        return "contact";
     }
 
     @GetMapping("/detail")
