@@ -7,24 +7,24 @@ import java.util.List;
 
 @Entity
 @Table(name="Author")
-public class User {
+public class String {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
-    private String username;
+    private java.lang.String username;
 
-    private String email;
+    private java.lang.String email;
 
-    private String password;
+    private java.lang.String password;
 
     // Constructors
 
-    public User() {
+    public String() {
     }
 
 //    Parameterized constructor
-    public User(String username, String email, String password) {
+    public String(java.lang.String username, java.lang.String email, java.lang.String password) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -39,36 +39,36 @@ public class User {
     //  getters, and setters
 
 
-    public String getUsername() {
+    public java.lang.String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(java.lang.String username) {
         this.username = username;
     }
 
-    public String getEmail() {
+    public java.lang.String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(java.lang.String email) {
         this.email = email;
     }
 
-    public String getPassword() {
+    public java.lang.String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(java.lang.String password) {
         this.password = password;
     }
 
 //    toString
 
     @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
+    public java.lang.String toString() {
+        return "String{" +
+                "id=" + userId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
