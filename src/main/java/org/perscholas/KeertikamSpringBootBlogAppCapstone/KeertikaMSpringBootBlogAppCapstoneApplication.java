@@ -9,5 +9,4 @@ public class KeertikaMSpringBootBlogAppCapstoneApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KeertikaMSpringBootBlogAppCapstoneApplication.class, args);
 	}
-
 }

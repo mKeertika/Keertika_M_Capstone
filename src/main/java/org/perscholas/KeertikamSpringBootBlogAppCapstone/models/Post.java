@@ -7,25 +7,20 @@ import java.time.LocalDate;
 @Entity
 public class Post {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long postId;
 
-    @Column
     private String title;
 
-    @Column
     private String content;
 
-    @Column
     private LocalDate publicationDate;
 
-    @Column
     private LocalDate postUpdateDate;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User author;
+    private String author;
 
 
     //    Default Constructor
@@ -33,7 +28,7 @@ public class Post {
     }
 //parameterized constructor
 
-    public Post(String title, String content, LocalDate publicationDate, LocalDate postUpdateDate, User author) {
+    public Post(String title, String content, LocalDate publicationDate, LocalDate postUpdateDate, String author) {
         this.title = title;
         this.content = content;
         this.publicationDate = publicationDate;
@@ -41,8 +36,11 @@ public class Post {
         this.author = author;
     }
 
-//    Getters and Setters
 
+    //    Getters and Setters
+    public Long getPostId() {
+        return postId;
+    }
 
     public String getTitle() {
         return title;
@@ -76,25 +74,27 @@ public class Post {
         this.postUpdateDate = postUpdateDate;
     }
 
-    public User getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
+
 //    toString Method
+
 
     @Override
     public String toString() {
         return "Post{" +
-                "id=" + id +
+                "postId=" + postId +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", publicationDate=" + publicationDate +
                 ", postUpdateDate=" + postUpdateDate +
-                ", author=" + author +
+                ", author='" + author + '\'' +
                 '}';
     }
 }
