@@ -25,7 +25,9 @@ public class PostController {
     }
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+
+        model.addAttribute("listPost", postService.getAllPost());
         return "index";
     }
 
@@ -73,6 +75,6 @@ public class PostController {
 
 //        saved to db
         postService.savePost(userPost);
-        return "/";
+        return "redirect:/";
     }
 }
