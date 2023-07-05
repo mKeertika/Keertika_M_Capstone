@@ -26,8 +26,9 @@ public class PostController {
 
     @GetMapping("/")
     public String home(Model model) {
-
+//fetching data from DB
         model.addAttribute("listPost", postService.getAllPost());
+//        returning to index page where all data are displayed
         return "index";
     }
 

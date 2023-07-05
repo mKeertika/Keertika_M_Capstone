@@ -101,3 +101,14 @@ label {
   transition: border-color .4s ease-out;
   border-radius: 0;
 }
+ .blogpreview-img-size {
+    max-width: 270px;
+    max-height: 270px; float:left; padding-top:5px; padding-right:20px; padding-bottom:20px;
+  }
+  
+  .blogpreview-img-td-width{
+  min-width:270px;
+  padding-right:10px}
+  
+  .text-left { text-align:left}
+  .text-top { text-align:top}

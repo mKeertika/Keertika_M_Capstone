@@ -10,3 +10,4 @@ public class KeertikaMSpringBootBlogAppCapstoneApplication {
 		SpringApplication.run(KeertikaMSpringBootBlogAppCapstoneApplication.class, args);
 	}
 }
+

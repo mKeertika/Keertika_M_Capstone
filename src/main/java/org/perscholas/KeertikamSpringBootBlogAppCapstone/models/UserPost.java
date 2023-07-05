@@ -2,6 +2,7 @@ package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -27,6 +28,7 @@ public class UserPost {
     }
 //parameterized constructor
 
+
     public UserPost(String postTitle, String content, LocalDate publicationDate, LocalDate postUpdateDate, String author) {
         this.postTitle = postTitle;
         this.content = content;
@@ -34,7 +36,6 @@ public class UserPost {
         this.postUpdateDate = postUpdateDate;
         this.author = author;
     }
-
 
     //    Getters and Setters
     public Long getPostId() {
@@ -81,18 +82,16 @@ public class UserPost {
         this.author = author;
     }
 
-
-//    toString Method
-
+    //    toString Method
 
     @Override
     public String toString() {
         return "UserPost{" +
                 "postId=" + postId +
-                ", title='" + postTitle + '\'' +
+                ", postTitle='" + postTitle + '\'' +
                 ", content='" + content + '\'' +
-                ", publicationDate=" + publicationDate.now() +
-                ", postUpdateDate=" + postUpdateDate.now() +
+                ", publicationDate=" + publicationDate +
+                ", postUpdateDate=" + postUpdateDate +
                 ", author='" + author + '\'' +
                 '}';
     }
