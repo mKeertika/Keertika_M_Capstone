@@ -1,6 +1,6 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.services;
 
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.Post;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ public interface IPostService {
 
 
 
-    void savePost(Post post);
+    void savePost(UserPost userPost);
 
     void deletePostById( long postId);
 
-    List<Post> getAllPost();
+    List<UserPost> getAllPost();
 
-    Post getPostById(long postId);
+    UserPost getPostById(long postId);
 }

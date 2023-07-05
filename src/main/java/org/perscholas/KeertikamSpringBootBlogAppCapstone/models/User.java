@@ -33,7 +33,7 @@ public class User {
 
 //    One to many Mapping
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Post> posts =new ArrayList<>();
+    private List<UserPost> userPosts =new ArrayList<>();
 
 
     //  getters, and setters

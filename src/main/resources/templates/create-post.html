@@ -31,7 +31,7 @@
                         <a class="nav-link btn-light active" href="/">Home</a>
                     </li> 
 						 <li class="nav-item">
-						  <a class="nav-link post-link active" href="create_post">Create Post</a>
+						  <a class="nav-link userPost-link active" href="create_post">Create Post</a>
 						</li>
                     <li class="nav-item">
                         <a class="nav-link active" href="login">Login</a>                   
@@ -57,18 +57,18 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-8 mx-md-auto mt-5">
-            <form method="post" action="/create_post">
+            <form th:action="@{/savePost}" th:object="${userPost}"  method="POST" >
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" placeholder="Enter the title">
+                    <input type="text" th:field="*{postTitle}" class="form-control" id="title" placeholder="Enter the title">
                 </div>
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
-                    <textarea name="textarea" rows="5" class="form-control" id="content" placeholder="Enter the content"></textarea>
+                    <textarea name="textarea"  th:field="*{content}" rows="5" class="form-control" id="content" placeholder="Enter the content"></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="title" class="form-label">Author Name</label>
-                    <input type="text" class="form-control" id="title" placeholder="Enter your name">
+                    <label for="author" class="form-label">User Name</label>
+                    <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="Enter your name">
                 </div><br>
 
                 <button type="submit" class="btn d-block mx-auto btn-primary">Create Post</button>

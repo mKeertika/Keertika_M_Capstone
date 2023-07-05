@@ -87,7 +87,7 @@ private Long id;
     private LocalDateTime commentDate;
     
     @ManyToOne
-    private Post post;
+    private Post userPost;
     
     // Constructors, getters, and setters
 }

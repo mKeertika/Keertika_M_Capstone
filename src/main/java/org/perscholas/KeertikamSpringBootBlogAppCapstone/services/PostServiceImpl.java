@@ -1,12 +1,11 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.services;
 
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.Post;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.repositories.IPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +15,7 @@ public class PostServiceImpl implements IPostService {
 
     @Autowired
     private IPostRepository postRepository;
-    private Post post;
+    private UserPost userPost;
 
 
 //    inserted constructor
@@ -30,12 +29,12 @@ public class PostServiceImpl implements IPostService {
 //    method overriding
 
     @Override
-    public void savePost(Post post) {
+    public void savePost(UserPost userPost) {
 
-        if (post.getPostId()==null){
-            post.setPublicationDate(LocalDate.now());
+        if (userPost.getPostId()==null){
+            userPost.setPublicationDate(LocalDate.now());
         }
-        postRepository.save(post);
+        postRepository.save(userPost);
 
     }
 
@@ -47,18 +46,18 @@ public class PostServiceImpl implements IPostService {
     }
 
     @Override
-    public List<Post> getAllPost() {
+    public List<UserPost> getAllPost() {
 
-        List<Post> allPosts = postRepository.findAll();
-        return allPosts;
+        List<UserPost> allUserPosts = postRepository.findAll();
+        return allUserPosts;
     }
 
     @Override
-    public Post getPostById(long postId) {
-        Optional<Post> optionalPost = postRepository.findById(postId);
+    public UserPost getPostById(long postId) {
+        Optional<UserPost> optionalPost = postRepository.findById(postId);
         if (optionalPost.isPresent()) {
-            Post post1 = optionalPost.get();
-            return post1;
+            UserPost userPost1 = optionalPost.get();
+            return userPost1;
         }
          throw new PostNotFoundException();
     }

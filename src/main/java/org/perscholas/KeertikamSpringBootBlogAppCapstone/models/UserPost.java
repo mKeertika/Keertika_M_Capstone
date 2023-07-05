@@ -5,14 +5,13 @@ import java.time.LocalDate;
 
 
 @Entity
-public class Post {
-
+public class UserPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
 
-    private String title;
+    private String postTitle;
 
     private String content;
 
@@ -24,12 +23,12 @@ public class Post {
 
 
     //    Default Constructor
-    public Post() {
+    public UserPost() {
     }
 //parameterized constructor
 
-    public Post(String title, String content, LocalDate publicationDate, LocalDate postUpdateDate, String author) {
-        this.title = title;
+    public UserPost(String postTitle, String content, LocalDate publicationDate, LocalDate postUpdateDate, String author) {
+        this.postTitle = postTitle;
         this.content = content;
         this.publicationDate = publicationDate;
         this.postUpdateDate = postUpdateDate;
@@ -42,12 +41,12 @@ public class Post {
         return postId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getPostTitle() {
+        return postTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
     }
 
     public String getContent() {
@@ -88,12 +87,12 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "UserPost{" +
                 "postId=" + postId +
-                ", title='" + title + '\'' +
+                ", title='" + postTitle + '\'' +
                 ", content='" + content + '\'' +
-                ", publicationDate=" + publicationDate +
-                ", postUpdateDate=" + postUpdateDate +
+                ", publicationDate=" + publicationDate.now() +
+                ", postUpdateDate=" + postUpdateDate.now() +
                 ", author='" + author + '\'' +
                 '}';
     }
