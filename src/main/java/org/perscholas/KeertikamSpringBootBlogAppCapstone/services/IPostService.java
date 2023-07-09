@@ -10,9 +10,9 @@ public interface IPostService {
 
     void savePost(UserPost userPost);
 
-    void deletePostById( long postId);
+    void deletePostById( Long postId);
 
     List<UserPost> getAllPost();
 
-    UserPost getPostById(long postId);
+    UserPost getPostById(Long postId);
 }

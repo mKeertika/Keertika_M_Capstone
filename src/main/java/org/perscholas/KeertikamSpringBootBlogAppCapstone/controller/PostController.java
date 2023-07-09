@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -76,6 +77,21 @@ public class PostController {
 
 //        saved to db
         postService.savePost(userPost);
+        return "redirect:/";
+    }
+
+
+    @GetMapping("/updatePost/{postId}")
+    public String showPageToUpdatePost(@PathVariable(value = "postId") Long postId, Model model){
+        UserPost userPostById = postService.getPostById(postId);
+        model.addAttribute("userPost", userPostById);
+        return "/update-post";
+    }
+
+
+    @GetMapping("/deletePost/{postId}")
+    public String deletePostById(@PathVariable(value = "postId") Long postId){
+        this.postService.deletePostById(postId);
         return "redirect:/";
     }
 }

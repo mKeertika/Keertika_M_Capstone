@@ -3,6 +3,7 @@ package org.perscholas.KeertikamSpringBootBlogAppCapstone.services;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.repositories.IPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 
 @Service
+@Primary
 public class PostServiceImpl implements IPostService {
 
     @Autowired
@@ -38,7 +40,7 @@ public class PostServiceImpl implements IPostService {
     }
 
     @Override
-    public void deletePostById(long postId) {
+    public void deletePostById(Long postId) {
 
         postRepository.deleteById(postId);
 
@@ -52,7 +54,7 @@ public class PostServiceImpl implements IPostService {
     }
 
     @Override
-    public UserPost getPostById(long postId) {
+    public UserPost getPostById(Long postId) {
         Optional<UserPost> optionalPost = postRepository.findById(postId);
         if (optionalPost.isPresent()) {
             UserPost userPost1 = optionalPost.get();
