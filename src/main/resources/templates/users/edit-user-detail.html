@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link th:href="@{/images/favicon.ico}" rel="icon" type="image/x-icon" href="../static/images/favicon.ico">
+    <link th:href="@{/images/favicon.ico}" rel="icon" type="image/x-icon" href="../../static/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Free Web tutorials">
     <meta name="keywords" content="my blog, you thoughts">
-    <title>User Details</title>
+    <title>Edit User Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer> </script>
-    <link th:href="@{/styles/style.css}" href="../static/styles/style.css" rel="stylesheet"  />
+    <link th:href="@{/styles/style.css}" href="../../static/styles/style.css" rel="stylesheet"  />
 </head>
 
 <body>
@@ -54,29 +54,25 @@
   <div class="container">
   <div class="row">
     <div class="container">
-  <h2>User Details</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>User ID</th>
-        <th>User Name</th>
-        <th>Email</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td th:text="${user.userId}"></td>
-        <td th:text="${user.userName}"></td>
-        <td th:text="${user.email}"></td>
-        <td>
-          <a th:href="@{/users/edit/{userId}(userId=${user.userId})}" class="btn btn-primary btn-sm">Edit</a>
-          <a th:href="@{/users/delete/{userId}(userId=${user.userId})}" class="btn btn-danger btn-sm">Delete</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <a href="/users" class="btn btn-primary">Back</a>
+  <h2>Edit User Details</h2>
+  <form action="/users/update" method="post">
+    <div class="form-group">
+      <label for="userId">User ID</label>
+      <input type="text" id="userId" name="userId" class="form-control" th:value="${user.userId}" readonly>
+    </div>
+    <div class="form-group">
+      <label for="userName">User Name</label>
+      <input type="text" id="userName" name="userName" class="form-control" th:value="${user.userName}">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" class="form-control" th:value="${user.email}">
+    </div><br>
+<br>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/users" class="btn btn-secondary">Cancel</a>
+  </form>
 </div>
   </div>
 </div>
@@ -84,9 +80,9 @@
 
 <!-- Footer starts here -->
 <div id="footer" class="container-fluid mt-5 p-4 text-white text-center">
-<a href="https://www.linkedin.com/in/keertika-mishra/" target="_blank"><img th:src="@{/images/linkedin-icon.png}" src="../static/images/linkedin-icon.png" alt="linkedin" width="30" height="30" border="0"></a>
-    <a href="https://www.facebook.com/keertika.mishra" target="_blank"><img th:src="@{/images/facebook.png}" src="../static/images/facebook.png" alt="facebook" width="30" height="30" border="0"></a>
-    <a href="https://github.com/mKeertika" target="_blank"><img  th:src="@{/images/github.png}" src="../static/images/github.png" alt="github" width="30" height="30" border="0"></a>  <a href="about"> About</a> | <a href="contact"> Contact</a></div>
+<a href="https://www.linkedin.com/in/keertika-mishra/" target="_blank"><img th:src="@{/images/linkedin-icon.png}" src="../../static/images/linkedin-icon.png" alt="linkedin" width="30" height="30" border="0"></a>
+    <a href="https://www.facebook.com/keertika.mishra" target="_blank"><img th:src="@{/images/facebook.png}" src="../../static/images/facebook.png" alt="facebook" width="30" height="30" border="0"></a>
+    <a href="https://github.com/mKeertika" target="_blank"><img th:src="@{/images/github.png}" src="../../static/images/github.png" alt="github" width="30" height="30" border="0"></a>  <a href="about"> About</a> | <a href="contact"> Contact</a></div>
 <!-- Footer ends here-->
  
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">

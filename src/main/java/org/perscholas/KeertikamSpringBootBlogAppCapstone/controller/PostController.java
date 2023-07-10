@@ -25,12 +25,12 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/users/user-detail-page")
     public String home(Model model) {
 //fetching data from DB
         model.addAttribute("listPost", postService.getAllPost());
 //        returning to index page where all data are displayed
-        return "index";
+        return "/users/user-detail-page";
     }
 
     @GetMapping("/about")
