@@ -13,7 +13,6 @@ import java.util.Optional;
 
 
 @Service
-@Primary
 public class PostServiceImpl implements IPostService {
 
     @Autowired

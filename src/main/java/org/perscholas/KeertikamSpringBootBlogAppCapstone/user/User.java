@@ -1,5 +1,7 @@
-package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
+package org.perscholas.KeertikamSpringBootBlogAppCapstone.user;
 
+
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    private String username;
+    private String userName;
 
     private String email;
 
@@ -24,8 +26,8 @@ public class User {
     }
 
 //    Parameterized constructor
-    public User(String username, String email, String password) {
-        this.username = username;
+    public User(String userName, String email, String password) {
+        this.userName = userName;
         this.email = email;
         this.password = password;
     }
@@ -39,12 +41,12 @@ public class User {
     //  getters, and setters
 
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
@@ -63,13 +65,16 @@ public class User {
         this.password = password;
     }
 
-//    toString
+    public Long getUserId() {
+        return userId;
+    }
+    //    toString
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + userId +
-                ", username='" + username + '\'' +
+                ", username='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

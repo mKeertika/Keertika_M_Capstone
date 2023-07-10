@@ -15,25 +15,25 @@
 //
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception{
-////        http.authorizeRequests(requests -> requests
-////                        .mvcMatchers("/login").permitAll()
-////                        .mvcMatchers("/").permitAll()
-////                        .mvcMatchers("/deleteEmployee/**").hasRole("SUPERADMIN")
-////                        .mvcMatchers("/showFormForUpdate/**").hasRole( "SUPERADMIN")
-////                        .mvcMatchers("/showEmployeeForm/**").permitAll()
-////                        .mvcMatchers("/saveEmployee/**").permitAll()
-////                        .anyRequest().authenticated())
-////                .formLogin(login -> login
-////                        .loginPage("/login")
-////                        .permitAll())
-////                .logout(logout -> logout
-////                        .logoutSuccessUrl("/login"));
-////
-////        http.authorizeRequests()
-////                .mvcMatchers("/actuator/**").permitAll() // Allow access to Actuator endpoints
-////                .anyRequest().authenticated() // Require authentication for other requests
-////                .and()
-////                .formLogin().permitAll(); // Enable form-based login
+//        http.authorizeRequests(requests -> requests
+//                        .mvcMatchers("/login").permitAll()
+//                        .mvcMatchers("/").permitAll()
+//                        .mvcMatchers("/deleteEmployee/**").hasRole("SUPERADMIN")
+//                        .mvcMatchers("/showFormForUpdate/**").hasRole( "SUPERADMIN")
+//                        .mvcMatchers("/showEmployeeForm/**").permitAll()
+//                        .mvcMatchers("/saveEmployee/**").permitAll()
+//                        .anyRequest().authenticated())
+//                .formLogin(login -> login
+//                        .loginPage("/login")
+//                        .permitAll())
+//                .logout(logout -> logout
+//                        .logoutSuccessUrl("/login"));
+//
+//        http.authorizeRequests()
+//                .mvcMatchers("/actuator/**").permitAll() // Allow access to Actuator endpoints
+//                .anyRequest().authenticated() // Require authentication for other requests
+//                .and()
+//                .formLogin().permitAll(); // Enable form-based login
 //    }
 //
 //
