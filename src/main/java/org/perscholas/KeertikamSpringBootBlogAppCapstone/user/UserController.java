@@ -3,6 +3,7 @@ package org.perscholas.KeertikamSpringBootBlogAppCapstone.user;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
+@Primary
 public class UserController {
 
     private IUserService userService;

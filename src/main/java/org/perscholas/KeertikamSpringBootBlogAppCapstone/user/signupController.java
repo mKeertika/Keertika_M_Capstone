@@ -1,4 +1,4 @@
-package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
+package org.perscholas.KeertikamSpringBootBlogAppCapstone.user;
 
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.user.IUserService;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.user.User;
@@ -21,16 +21,19 @@ private IUserService userService;
         this.userService = userService;
     }
 
-@GetMapping("/signup")
-public String signupDisplay(Model model){
+    @GetMapping("/signup")
+    public String signUp() {
+        return "signup";
+    }
 
-    User newUser = new User();
-//    adding data to user table in db
-    model.addAttribute("user", newUser);
-        return "/users/user-detail-page";
-
-
-}
+//@GetMapping("/signup")
+//public String signupDisplay(Model model){
+//
+//    User newUser = new User();
+////    adding data to user table in db
+//    model.addAttribute("user", newUser);
+//        return "/users/user-detail-page";
+//}
 
     @PostMapping("/signup")
     public String signupUser(@ModelAttribute("user") User user, Model model) {
@@ -44,6 +47,6 @@ public String signupDisplay(Model model){
             return "signup";
         }
         userService.saveUser(user);
-        return "redirect:/login";
+        return "/users/user-detail-page";
     }
 }

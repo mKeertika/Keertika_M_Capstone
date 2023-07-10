@@ -48,15 +48,19 @@ public class PostController {
         return "inner";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
 
-    @GetMapping("/signup")
-    public String signUp() {
-        return "signup";
-    }
+//    Already defined in user/UserController
+//    @GetMapping("/login")
+//    public String login() {
+//        return "login";
+//    }
+
+
+//    Already defined in user/SignupController
+//    @GetMapping("/signup")
+//    public String signUp() {
+//        return "signup";
+//    }
 
 
     @GetMapping("/create_post")

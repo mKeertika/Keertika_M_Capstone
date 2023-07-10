@@ -14,7 +14,6 @@ public class KeertikaMSpringBootBlogAppCapstoneApplication {
 	}
 
 
-
 	@Bean
 	public CommandLineRunner commandLineRunner(IPostService postService) {
 		return args -> System.out.println("My blog is running now!");

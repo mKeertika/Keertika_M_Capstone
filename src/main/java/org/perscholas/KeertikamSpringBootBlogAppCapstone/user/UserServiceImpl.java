@@ -26,7 +26,8 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void saveUser(User user) {
-         userRepository.save(user);
+
+        userRepository.save(user);
 
     }
 
@@ -43,7 +44,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User getUserByName(String userName) {
 
-        User user = userRepository.findFirstByName(userName);
+        User user = userRepository.findByUserName(userName);
         if(user==null){
             throw new UserNotFoundException();
         }
