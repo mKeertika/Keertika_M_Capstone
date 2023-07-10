@@ -1,4 +1,4 @@
-package org.perscholas.KeertikamSpringBootBlogAppCapstone.user;
+package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
 
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;

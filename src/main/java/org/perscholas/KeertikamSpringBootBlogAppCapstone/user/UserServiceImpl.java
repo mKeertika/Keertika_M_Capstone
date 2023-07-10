@@ -1,5 +1,7 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.user;
 
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,13 +44,10 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User getUserByName(String userName) {
+    public User getUserByEmail(String email) {
 
-        User user = userRepository.findByUserName(userName);
-        if(user==null){
-            throw new UserNotFoundException();
-        }
-        return user;
+
+        return userRepository.findByUserEmail(email);
     }
 
     @Override

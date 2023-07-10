@@ -1,5 +1,7 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.user;
 
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
+
 import java.util.List;
 
 public interface IUserService {
@@ -10,7 +12,7 @@ public interface IUserService {
 
     User getUserById(Long userId);
 
-    User getUserByName(String userName);
+    User getUserByEmail(String email);
 
     void deleteUserById(Long userId);
 

@@ -1,7 +1,7 @@
-package org.perscholas.KeertikamSpringBootBlogAppCapstone.user;
+package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.user.IUserService;
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.user.User;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,20 +9,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
+
 
 @Controller
-public class signupController {
+public class SignupController {
 
 private IUserService userService;
 
 //Constructor
     @Autowired
-    public signupController(IUserService userService) {
+    public SignupController(IUserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/signup")
-    public String signUp() {
+    public String signUp(Model model) {
+
+        User newUser = new User();
+        model.addAttribute("user", newUser);
         return "signup";
     }
 
@@ -35,9 +40,9 @@ private IUserService userService;
 //        return "/users/user-detail-page";
 //}
 
-    @PostMapping("/signup")
-    public String signupUser(@ModelAttribute("user") User user, Model model) {
-        User existingUser = userService.getUserByName(user.getUserName());
+    @PostMapping("/saveUser")
+    public String signupUser(@ModelAttribute("user") @Valid User user, Model model) {
+        User existingUser = userService.getUserByEmail(user.getEmail());
 
 //        checking whether user already exist in db
         if (existingUser != null) {
