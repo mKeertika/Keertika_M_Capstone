@@ -17,11 +17,9 @@
 //    protected void configure(HttpSecurity http) throws Exception{
 //        http.authorizeRequests(requests -> requests
 //                        .mvcMatchers("/login").permitAll()
+//                        .mvcMatchers("/signup").permitAll()
 //                        .mvcMatchers("/").permitAll()
-//                        .mvcMatchers("/deleteEmployee/**").hasRole("SUPERADMIN")
-//                        .mvcMatchers("/showFormForUpdate/**").hasRole( "SUPERADMIN")
-//                        .mvcMatchers("/showEmployeeForm/**").permitAll()
-//                        .mvcMatchers("/saveEmployee/**").permitAll()
+//                        .mvcMatchers("/users/user-detail-page").hasRole("SUPERADMIN")
 //                        .anyRequest().authenticated())
 //                .formLogin(login -> login
 //                        .loginPage("/login")
@@ -29,11 +27,11 @@
 //                .logout(logout -> logout
 //                        .logoutSuccessUrl("/login"));
 //
-//        http.authorizeRequests()
-//                .mvcMatchers("/actuator/**").permitAll() // Allow access to Actuator endpoints
-//                .anyRequest().authenticated() // Require authentication for other requests
-//                .and()
-//                .formLogin().permitAll(); // Enable form-based login
+////        http.authorizeRequests()
+////                .mvcMatchers("/actuator/**").permitAll() // Allow access to Actuator endpoints
+////                .anyRequest().authenticated() // Require authentication for other requests
+////                .and()
+////                .formLogin().permitAll(); // Enable form-based login
 //    }
 //
 //
@@ -56,6 +54,10 @@
 //        web
 //                .ignoring()
 //                .antMatchers("/static/**")
-//                .antMatchers("/**/*.css");
+//                .antMatchers("/**/*.css")
+//                .antMatchers("/**/*.png")
+//                .antMatchers("/**/*.ico")
+//                .antMatchers("/**/*.jpg")
+//                .antMatchers("/**/*.jpeg");
 //    }
 //}

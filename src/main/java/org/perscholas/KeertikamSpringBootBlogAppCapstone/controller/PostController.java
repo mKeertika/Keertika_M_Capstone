@@ -25,12 +25,12 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/users/user-detail-page")
+    @GetMapping("/")
     public String home(Model model) {
 //fetching data from DB
         model.addAttribute("listPost", postService.getAllPost());
 //        returning to index page where all data are displayed
-        return "/users/user-detail-page";
+        return "/index";
     }
 
     @GetMapping("/about")
@@ -86,11 +86,13 @@ public class PostController {
 
 
     @GetMapping("/updatePost/{postId}")
-    public String showPageToUpdatePost(@PathVariable(value = "postId") Long postId, Model model){
+    public String showPageToUpdatePost(@PathVariable(value = "postId")  Long postId, Model model){
         UserPost userPostById = postService.getPostById(postId);
         model.addAttribute("userPost", userPostById);
         return "/update-post";
     }
+
+
 
 
     @GetMapping("/deletePost/{postId}")

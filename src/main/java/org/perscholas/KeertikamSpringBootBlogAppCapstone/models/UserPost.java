@@ -3,6 +3,7 @@ package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Entity
@@ -94,5 +95,28 @@ public class UserPost {
                 ", postUpdateDate=" + postUpdateDate +
                 ", author='" + author + '\'' +
                 '}';
+    }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        UserPost userPost = (UserPost) o;
+//        return postId == userPost.postId && Objects.equals(postTitle, userPost.postTitle) && Objects.equals(content, userPost.content)
+//                && Objects.equals(publicationDate, userPost.publicationDate)&& Objects.equals(author, userPost.author);
+//    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserPost userPost = (UserPost) o;
+        return Objects.equals(postTitle, userPost.postTitle) && Objects.equals(content, userPost.content) && Objects.equals(author, userPost.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(postTitle, content, author);
     }
 }
