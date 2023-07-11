@@ -57,7 +57,7 @@
     <div class="row">
       <div class="col-12 col-md-8 mx-md-auto mt-5"> 
 
-         <form  class="px-2 px-sm-5 py-5" th:action="@{/saveUser}" th:object="${user}"  method="POST" >
+         <form  class="px-2 px-sm-5 py-5" th:action="@{/users/user-profile-dashboard}" th:object="${user}"  method="POST" >
 		 <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" th:field="*{userName}" class="form-control" id="username" placeholder="Enter your username">

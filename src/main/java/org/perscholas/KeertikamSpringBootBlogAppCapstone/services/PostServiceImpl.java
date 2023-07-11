@@ -31,9 +31,9 @@ public class PostServiceImpl implements IPostService {
     @Override
     public void savePost(UserPost userPost) {
 
-        if (userPost.getPostId()==null){
-            userPost.setPublicationDate(LocalDate.now());
-        }
+//        if (userPost.getPostId()==null){
+//            userPost.setPublicationDate(LocalDate.now());
+//        }
         postRepository.save(userPost);
 
     }

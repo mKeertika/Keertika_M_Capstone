@@ -87,8 +87,14 @@ public class PostController {
 
     @GetMapping("/updatePost/{postId}")
     public String showPageToUpdatePost(@PathVariable(value = "postId")  Long postId, Model model){
-        UserPost userPostById = postService.getPostById(postId);
-        model.addAttribute("userPost", userPostById);
+//        UserPost userPostById = postService.getPostById(postId);
+//        model.addAttribute("userPost", userPostById);
+        UserPost updatedPost = postService.getPostById(postId);
+        updatedPost.setPostTitle(updatedPost.getPostTitle());
+        updatedPost.setContent(updatedPost.getContent());
+       // postService.savePost(updatedPost);
+        model.addAttribute(updatedPost);
+
         return "/update-post";
     }
 

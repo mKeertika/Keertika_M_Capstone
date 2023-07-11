@@ -52,6 +52,6 @@ private IUserService userService;
             return "signup";
         }
         userService.saveUser(user);
-        return "/users/user-detail-page";
+        return "/users/user-profile-dashboard";
     }
 }
