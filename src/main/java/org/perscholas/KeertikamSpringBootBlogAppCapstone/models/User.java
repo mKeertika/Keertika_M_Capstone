@@ -19,8 +19,12 @@ public class User {
 
     private String password;
 
-    // Constructors
+    //    One to many Mapping
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<UserPost> userPosts =new ArrayList<>();
 
+
+    // Constructors
     public User() {
     }
 
@@ -32,9 +36,6 @@ public class User {
     }
 
 
-//    One to many Mapping
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<UserPost> userPosts =new ArrayList<>();
 
 
     //  getters, and setters
@@ -67,15 +68,26 @@ public class User {
     public Long getUserId() {
         return userId;
     }
+
+    public List<UserPost> getUserPosts() {
+        return userPosts;
+    }
+
+    public void setUserPosts(List<UserPost> userPosts) {
+        this.userPosts = userPosts;
+    }
+
     //    toString
+
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + userId +
-                ", username='" + userName + '\'' +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", userPosts=" + userPosts +
                 '}';
     }
 }

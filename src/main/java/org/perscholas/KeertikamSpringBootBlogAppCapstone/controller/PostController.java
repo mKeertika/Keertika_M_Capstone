@@ -1,7 +1,10 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostService;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.user.UserNotFoundException;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,6 +66,7 @@ public class PostController {
 //    }
 
 
+
     @GetMapping("/create_post")
     public String createPost(Model model) {
 
@@ -99,11 +103,10 @@ public class PostController {
     }
 
 
-
-
     @GetMapping("/deletePost/{postId}")
     public String deletePostById(@PathVariable(value = "postId") Long postId){
         this.postService.deletePostById(postId);
         return "redirect:/";
     }
+
 }

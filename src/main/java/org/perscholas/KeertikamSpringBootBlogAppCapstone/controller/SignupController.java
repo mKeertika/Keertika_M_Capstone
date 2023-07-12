@@ -40,7 +40,7 @@ private IUserService userService;
 //        return "/users/user-detail-page";
 //}
 
-    @PostMapping("/saveUser")
+    @PostMapping("/saveNewUser")
     public String signupUser(@ModelAttribute("user") @Valid User user, Model model) {
         User existingUser = userService.getUserByEmail(user.getEmail());
 
@@ -51,7 +51,9 @@ private IUserService userService;
                     "Username already exists. Please choose a different username.");
             return "signup";
         }
-        userService.saveUser(user);
+        User newUser = new User();
+//        userService.saveUser(user);
+        model.addAttribute(newUser);
         return "/users/user-profile-dashboard";
     }
 }

@@ -19,9 +19,11 @@ public class UserPost {
 
     private LocalDate publicationDate;
 
-    private LocalDate postUpdateDate;
-
     private String author;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
     //    Default Constructor
@@ -29,14 +31,15 @@ public class UserPost {
     }
 //parameterized constructor
 
-
-    public UserPost(String postTitle, String content, LocalDate publicationDate, LocalDate postUpdateDate, String author) {
+    public UserPost(String postTitle, String content, LocalDate publicationDate, String author, User user) {
         this.postTitle = postTitle;
         this.content = content;
         this.publicationDate = publicationDate;
-        this.postUpdateDate = postUpdateDate;
         this.author = author;
+        this.user = user;
     }
+
+
 
     //    Getters and Setters
     public Long getPostId() {
@@ -67,14 +70,6 @@ public class UserPost {
         this.publicationDate = publicationDate;
     }
 
-    public LocalDate getPostUpdateDate() {
-        return postUpdateDate;
-    }
-
-    public void setPostUpdateDate(LocalDate postUpdateDate) {
-        this.postUpdateDate = postUpdateDate;
-    }
-
     public String getAuthor() {
         return author;
     }
@@ -83,7 +78,14 @@ public class UserPost {
         this.author = author;
     }
 
-    //    toString Method
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+//    toString Method
 
     @Override
     public String toString() {
@@ -92,31 +94,8 @@ public class UserPost {
                 ", postTitle='" + postTitle + '\'' +
                 ", content='" + content + '\'' +
                 ", publicationDate=" + publicationDate +
-                ", postUpdateDate=" + postUpdateDate +
                 ", author='" + author + '\'' +
                 '}';
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        UserPost userPost = (UserPost) o;
-//        return postId == userPost.postId && Objects.equals(postTitle, userPost.postTitle) && Objects.equals(content, userPost.content)
-//                && Objects.equals(publicationDate, userPost.publicationDate)&& Objects.equals(author, userPost.author);
-//    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserPost userPost = (UserPost) o;
-        return Objects.equals(postTitle, userPost.postTitle) && Objects.equals(content, userPost.content) && Objects.equals(author, userPost.author);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(postTitle, content, author);
-    }
 }
