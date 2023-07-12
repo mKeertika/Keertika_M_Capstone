@@ -1,10 +1,9 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.PostImage;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostImageService;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostService;
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.user.UserNotFoundException;
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +19,7 @@ import javax.validation.Valid;
 public class PostController {
 
     private IPostService postService;
+    private IPostImageService imageService;
 
 //    Constructor
 
@@ -109,4 +109,20 @@ public class PostController {
         return "redirect:/";
     }
 
+
+
+//    Image related methods
+
+        @GetMapping("/create_post/{postId}")
+        public String showBlogPost(@PathVariable Long postId, Model model) {
+            // Retrieve the Image associated with the blog post
+            PostImage img = imageService.getPostImageByUserPostId(postId);
+
+            if (img != null) {
+                // Pass the image URL to the view
+                model.addAttribute("imageUrl", img.getFilePath());
+            }
+
+            return "/index";
+}
 }

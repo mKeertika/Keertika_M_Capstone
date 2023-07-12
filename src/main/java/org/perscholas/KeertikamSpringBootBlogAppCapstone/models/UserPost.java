@@ -42,6 +42,7 @@ public class UserPost {
 
 
     //    Getters and Setters
+
     public Long getPostId() {
         return postId;
     }
@@ -82,9 +83,7 @@ public class UserPost {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+
 //    toString Method
 
     @Override

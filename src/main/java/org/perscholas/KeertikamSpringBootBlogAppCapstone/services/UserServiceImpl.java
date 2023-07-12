@@ -1,9 +1,11 @@
-package org.perscholas.KeertikamSpringBootBlogAppCapstone.user;
+package org.perscholas.KeertikamSpringBootBlogAppCapstone.services;
 
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.repositories.IPostRepository;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.repositories.IUserRepository;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IUserService;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

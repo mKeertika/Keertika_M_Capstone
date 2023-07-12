@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IImageRepository extends JpaRepository<PostImage, Long> {
 
+//    added a custom method
     PostImage findByPostId();
 }

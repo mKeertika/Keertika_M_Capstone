@@ -22,5 +22,36 @@ public class PostImage {
         public PostImage() {
     }
 
+    public PostImage(String imageName, String filePath) {
+        this.imageName = imageName;
+        this.filePath = filePath;
+    }
 
+
+//    getters and setters
+
+
+    public Long getImageId() {
+        return imageId;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public UserPost getUserPost() {
+        return userPost;
+    }
 }

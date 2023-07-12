@@ -1,6 +1,6 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.user.IUserService;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IUserService;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package org.perscholas.KeertikamSpringBootBlogAppCapstone.user;
+package org.perscholas.KeertikamSpringBootBlogAppCapstone.services;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
