@@ -2,11 +2,11 @@ package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
 import javax.persistence.*;
 
-public class Image {
+public class PostImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long imageId;
 
     @Column(nullable = false)
     private String imageName;
@@ -19,7 +19,7 @@ public class Image {
     private UserPost userPost;
 
 //    default constructor
-        public Image() {
+        public PostImage() {
     }
 
 
