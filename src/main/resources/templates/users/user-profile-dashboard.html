@@ -74,7 +74,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="userPost : ${user.userPosts}">
+                <tr th:each="userPost : ${userPostList}">
                     <td th:text="${userPost.title}"></td>
                     <td th:text="${userPost.content}"></td>
                 </tr>

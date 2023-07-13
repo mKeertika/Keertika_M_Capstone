@@ -16,7 +16,7 @@
 //    private String filePath;
 //
 //    @OneToOne
-//    @JoinColumn(name = "blog_post_id", nullable = false)
+//    @JoinColumn(name = "userPost_id", nullable = false)
 //    private UserPost userPost;
 //
 ////    default constructor

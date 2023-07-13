@@ -90,6 +90,7 @@ public class PostController {
     }
 
 
+<<<<<<< HEAD
     @PostMapping("/updatedPost/{postId}")
     public String showPageToUpdatedPost(@PathVariable(value = "postId")
                                             Long postId, Model model){
@@ -98,6 +99,13 @@ public class PostController {
 //        model.addAttribute("userPost", userPost);
         postService.savePost(userPost);
         return "redirect:/";
+=======
+    @PostMapping("/updatePost/{postId}")
+    public String showPageToUpdatePost(@ModelAttribute("userPost")  @Valid UserPost userPost, BindingResult bindingResult){
+
+
+        return "/update-post";
+>>>>>>> 398573ef0facac2e977a607e262f69ed2a975f86
     }
 
 
