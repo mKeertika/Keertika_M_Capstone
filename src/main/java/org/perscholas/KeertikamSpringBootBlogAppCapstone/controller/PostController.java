@@ -54,16 +54,26 @@ public class PostController {
     @PostMapping("/savePost")
     public String savePost(@ModelAttribute("userPost")  @Valid UserPost userPost, BindingResult bindingResult){
 
-
-        if(userService.getUserByUserName(userPost.getAuthor())==null){
-            return "User does not exist";
-        }
         if(bindingResult.hasErrors()){
             return "redirect:/create-post";
         }
+//        checking whether user already exist
 
-//        saved to db
-        postService.savePost(userPost);
+        User user=userService.getUserByUserName(userPost.getAuthor());
+
+//         if not
+        if(user==null){
+            user= new User(userPost.getAuthor(), null, null);
+
+            userService.saveUser(user);
+        }
+
+//        if user already exist it will display all post related to that user
+        List<UserPost> userPostList= user.getUserPostList();
+
+        //saving post in db
+        userPostList.add(userPost);
+//        saving user to db
         return "redirect:/";
     }
 
@@ -79,16 +89,13 @@ public class PostController {
         return "/update-post";
     }
 
-//
-//    @PostMapping("/updatePost/{postId}")
-//    public String showPageToUpdatePost(@PathVariable(value = "postId")  Long userPostId,UserPost userPost, Model model){
-//
-//        UserPost existingUserPost= userService.getUserPostById(userPostId);
-//
-//        model.addAttribute("userPost", userPost);
-//        postService.savePost(userPost);
-//        return "/update-post";
-//    }
+
+    @PostMapping("/updatePost/{postId}")
+    public String showPageToUpdatePost(@ModelAttribute("userPost")  @Valid UserPost userPost, BindingResult bindingResult){
+
+
+        return "/update-post";
+    }
 
 
 
