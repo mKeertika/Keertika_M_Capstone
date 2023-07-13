@@ -1,6 +1,7 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
 //import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.PostImage;
+
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 //import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostImageService;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -40,8 +42,6 @@ public class PostController {
     }
 
 
-
-
     @GetMapping("/create_post")
     public String createPost(Model model) {
 
@@ -52,34 +52,36 @@ public class PostController {
     }
 
     @PostMapping("/savePost")
-    public String savePost(@ModelAttribute("userPost")  @Valid UserPost userPost, BindingResult bindingResult){
+    public String savePost(@ModelAttribute("userPost") @Valid UserPost userPost,
+                           BindingResult bindingResult,
+                           HttpSession httpSession) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "redirect:/create-post";
         }
 //        checking whether user already exist
 
-        User user=userService.getUserByUserName(userPost.getAuthor());
+        User user = userService.getUserByUserName(userPost.getAuthor());
 
 //         if not
-        if(user==null){
-            user= new User(userPost.getAuthor(), null, null);
-
-            userService.saveUser(user);
+        if (user == null) {
+            user = new User(userPost.getAuthor(), null, null);
         }
 
 //        if user already exist it will display all post related to that user
-        List<UserPost> userPostList= user.getUserPostList();
+        List<UserPost> userPostList = user.getUserPostList();
 
         //saving post in db
         userPostList.add(userPost);
-//        saving user to db
+        userService.saveUser(user);
+
+        httpSession.setAttribute("userName", user.getUserName());
         return "redirect:/";
     }
 
 
     @GetMapping("/updatePost/{postId}")
-    public String showPageToUpdatePost(@PathVariable(value = "postId")  Long postId, Model model){
+    public String showPageToUpdatePost(@PathVariable(value = "postId") Long postId, Model model) {
 
         // get employee from the service
         UserPost userPost = postService.getPostById(postId);
@@ -89,30 +91,28 @@ public class PostController {
         return "/update-post";
     }
 
-
-<<<<<<< HEAD
     @PostMapping("/updatedPost/{postId}")
     public String showPageToUpdatedPost(@PathVariable(value = "postId")
-                                            Long postId, Model model){
+                                                Long postId, Model model) {
 
         UserPost userPost = postService.getPostById(postId);
 //        model.addAttribute("userPost", userPost);
         postService.savePost(userPost);
         return "redirect:/";
-=======
-    @PostMapping("/updatePost/{postId}")
-    public String showPageToUpdatePost(@ModelAttribute("userPost")  @Valid UserPost userPost, BindingResult bindingResult){
-
-
-        return "/update-post";
->>>>>>> 398573ef0facac2e977a607e262f69ed2a975f86
     }
 
 
-
     @GetMapping("/deletePost/{postId}")
-    public String deletePostById(@PathVariable(value = "postId") Long postId){
-        this.postService.deletePostById(postId);
+    public String deletePostById(@PathVariable(value = "postId") Long postId,
+                                 HttpSession httpSession) {
+        String userName = (String) httpSession.getAttribute("userName");
+        User user = userService.getUserByUserName(userName);
+        List<UserPost> posts = user.getUserPostList();
+
+        UserPost postById = postService.getPostById(postId);
+        posts.remove(postById);
+
+        userService.saveUser(user);
         return "redirect:/";
     }
 //
@@ -142,3 +142,4 @@ public class PostController {
 //            return "/index";
 //}
 }
+

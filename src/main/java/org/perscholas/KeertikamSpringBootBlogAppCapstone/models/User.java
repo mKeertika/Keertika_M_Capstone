@@ -21,20 +21,19 @@ public class User {
 
     //    One to many Mapping
     @OneToMany(cascade = CascadeType.ALL)
-    private List<UserPost> userPostList =new ArrayList<>();
+    private List<UserPost> userPostList = new ArrayList<>();
 
 
     // Constructors
     public User() {
     }
 
-//    Parameterized constructor
+    //    Parameterized constructor
     public User(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
         this.password = password;
     }
-
 
 
     //  getters, and setters
