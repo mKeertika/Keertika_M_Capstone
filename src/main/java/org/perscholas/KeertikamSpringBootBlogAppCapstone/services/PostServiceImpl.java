@@ -1,10 +1,13 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.services;
 
+import org.apache.catalina.User;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.repositories.IPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,7 +23,7 @@ public class PostServiceImpl implements IPostService {
     private UserPost userPost;
 
 
-//    inserted constructor
+    //    inserted constructor
     public PostServiceImpl(IPostRepository postRepository) {
         this.postRepository = postRepository;
     }
@@ -31,7 +34,7 @@ public class PostServiceImpl implements IPostService {
     @Override
     public void savePost(UserPost userPost) {
 
-        if (userPost.getPostId()==null){
+        if (userPost.getPostId() == null) {
             userPost.setPublicationDate(LocalDate.now());
         }
         postRepository.save(userPost);
@@ -46,19 +49,23 @@ public class PostServiceImpl implements IPostService {
     }
 
     @Override
-    public List<UserPost> getAllPost() {
-
-        List<UserPost> allUserPosts = postRepository.findAll();
-        return allUserPosts;
+    public List<UserPost> findByUserId(User user) {
+        return null;
     }
 
+
     @Override
-    public UserPost getPostById(Long postId) {
-        Optional<UserPost> optionalPost = postRepository.findById(postId);
+    public UserPost getPostById(Long userPostId) {
+        Optional<UserPost> optionalPost = postRepository.findById(userPostId);
         if (optionalPost.isPresent()) {
             UserPost userPost1 = optionalPost.get();
             return userPost1;
         }
-         throw new PostNotFoundException();
+        throw new PostNotFoundException();
+    }
+
+    @Override
+    public Object getAllPost() {
+        return postRepository.findAll();
     }
 }

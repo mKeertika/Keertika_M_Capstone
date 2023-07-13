@@ -4,8 +4,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Objects;
 
 
 @Entity
@@ -24,9 +22,10 @@ public class UserPost {
 
     private String author;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
 
 
     //    Default Constructor
@@ -34,17 +33,15 @@ public class UserPost {
     }
 //parameterized constructor
 
-    public UserPost(String postTitle, String content, LocalDate publicationDate, String author, User user) {
+    public UserPost(String postTitle, String content, LocalDate publicationDate, String author) {
         this.postTitle = postTitle;
         this.content = content;
         this.publicationDate = publicationDate;
         this.author = author;
-        this.user = user;
     }
 
 
-
-    //    Getters and Setters
+//    Getters and Setters
 
     public Long getPostId() {
         return postId;
@@ -81,23 +78,16 @@ public class UserPost {
     public void setAuthor(String author) {
         this.author = author;
     }
-
-    public User getUser() {
-        return user;
-    }
-
-
 //    toString Method
+
 
     @Override
     public String toString() {
         return "UserPost{" +
-                "postId=" + postId +
-                ", postTitle='" + postTitle + '\'' +
+                "postTitle='" + postTitle + '\'' +
                 ", content='" + content + '\'' +
                 ", publicationDate=" + publicationDate +
                 ", author='" + author + '\'' +
                 '}';
     }
-
 }

@@ -20,8 +20,8 @@ public class User {
     private String password;
 
     //    One to many Mapping
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<UserPost> userPosts =new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<UserPost> userPostList =new ArrayList<>();
 
 
     // Constructors
@@ -68,15 +68,11 @@ public class User {
         return userId;
     }
 
-    public List<UserPost> getUserPosts() {
-        return userPosts;
+    public List<UserPost> getUserPostList() {
+        return userPostList;
     }
 
-    public void setUserPosts(List<UserPost> userPosts) {
-        this.userPosts = userPosts;
-    }
-
-    //    toString
+//    toString
 
 
     @Override
@@ -86,7 +82,7 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", userPosts=" + userPosts +
+//                ", userPosts=" + userPosts +
                 '}';
     }
 }

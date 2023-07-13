@@ -21,11 +21,12 @@ public class UserServiceImpl implements IUserService {
 
 
 //    Constructor
-    @Autowired
+
     public UserServiceImpl(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    @Autowired
     public UserServiceImpl(IUserRepository userRepository, IPostRepository postRepository) {
         this.userRepository = userRepository;
         this.postRepository = postRepository;
@@ -75,6 +76,11 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public User getUserByUserName(String userName) {
+       return  userRepository.findFirstByUserName(userName);
+    }
+
+    @Override
     public void deleteUserById(Long userId) {
 
         userRepository.deleteById(userId);
@@ -83,33 +89,12 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserPost getUserPostById(Long userId, Long userPostId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(new Supplier<IllegalArgumentException>() {
-                    @Override
-                    public IllegalArgumentException get() {
-                        return new IllegalArgumentException("User not found");
-                    }
-                });
-        return user.getUserPosts().stream()
-                .filter(userPost -> userPost.getPostId().equals(userPostId))
-                .findFirst()
-                .orElseThrow(() -> {
-                    return new IllegalArgumentException("Blog not found");
-                });
+        return null;
     }
 
     @Override
     public void deleteUserPostById(Long userId, Long userPostId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-        UserPost userPost =postRepository.findById(userPostId)
-                .orElseThrow(() -> new IllegalArgumentException("Blog not found"));
 
-        if (!user.getUserPosts().contains(userPost)) {
-            throw new IllegalArgumentException("Blog does not belong to the user");
-        }
-
-        user.getUserPosts().remove(userPost);
-        userRepository.save(user);
     }
+
 }

@@ -79,16 +79,18 @@ public class UserController {
         model.addAttribute(userById);
         return "/users/edit-user-detail";
     }
-//
-////    methods to deal with userPosts on user profile Dashboard
-//
-//    @GetMapping("/users/{userId}/userPosts")
-//    public String showUserPostsByUserID(@PathVariable Long userId, Model model) {
-//        User user = userService.getUserById(userId);
-//        List<UserPost> userPosts = user.getUserPosts();
-//        model.addAttribute("user", userPosts);
-//        return "/users/user-profile-dashboard";
-//    }
+
+//    methods to deal with userPosts on user profile Dashboard
+
+    @GetMapping("/users/{userId}/userPosts")
+    public String showUserPostsByUserID(@PathVariable Long userId, Model model) {
+        User user = userService.getUserById(userId);
+        List<UserPost> userPostList = user.getUserPostList();
+        model.addAttribute("userPost", userPostList);
+        return "/users/user-profile-dashboard";
+    }
+
+
 //
 //
 //    @GetMapping("/{userId}/blogs/{blogId}/edit")
