@@ -30,10 +30,10 @@
                         <a class="nav-link btn-light active" href="/">Home</a>
                     </li> 
 						 <li class="nav-item">
-						  <a class="nav-link userPost-link active" href="create_post">Create Post</a>
+						  <a class="nav-link userPost-link active" th:href="@{/create_post}">Create Post</a>
 						</li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="login">Login</a>                   
+                        <a class="nav-link active" th:href="@{/login}">Login</a>                   
 				  </li>
                 </ul>
             </div>
@@ -87,7 +87,7 @@
 <div id="footer" class="mt-5 p-4 text-white text-center" >
 <a href="https://www.linkedin.com/in/keertika-mishra/" target="_blank"><img th:src="@{/images/linkedin-icon.png}" src="../static/images/linkedin-icon.png" alt="linkedin" width="30" height="30" border="0"></a>
     <a href="https://www.facebook.com/keertika.mishra" target="_blank"><img th:src="@{/images/facebook.png}" src="../static/images/facebook.png" alt="facebook" width="30" height="30" border="0"></a>
-    <a href="https://github.com/mKeertika" target="_blank"><img th:src="@{/images/github.png}" src="../static/images/github.png" alt="github" width="30" height="30" border="0"></a>  <a href="about"> About</a> | <a href="contact"> Contact</a></div>
+    <a href="https://github.com/mKeertika" target="_blank"><img th:src="@{/images/github.png}" src="../static/images/github.png" alt="github" width="30" height="30" border="0"></a> <a href="about" th:href="@{/about}"> About</a> | <a href="contact" th:href="@{/contact}> Contact</a></div>
 <!-- Footer ends here-->
 
 

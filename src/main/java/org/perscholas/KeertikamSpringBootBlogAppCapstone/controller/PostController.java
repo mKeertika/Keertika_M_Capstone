@@ -1,25 +1,28 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
 //import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.PostImage;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 //import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostImageService;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostService;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class PostController {
 
+    @Autowired
     private IPostService postService;
-//    private IPostImageService imageService;
+
+    @Autowired
+    private IUserService userService;
 
 //    Constructor
 
@@ -38,20 +41,6 @@ public class PostController {
 
 
 
-//    Already defined in user/UserController
-//    @GetMapping("/login")
-//    public String login() {
-//        return "login";
-//    }
-
-
-//    Already defined in user/SignupController
-//    @GetMapping("/signup")
-//    public String signUp() {
-//        return "signup";
-//    }
-
-
 
     @GetMapping("/create_post")
     public String createPost(Model model) {
@@ -68,9 +57,23 @@ public class PostController {
         if(bindingResult.hasErrors()){
             return "redirect:/create-post";
         }
+//        checking whether user already exist
 
-//        saved to db
-        postService.savePost(userPost);
+        User user=userService.getUserByUserName(userPost.getAuthor());
+
+//         if not
+        if(user==null){
+            user= new User(userPost.getAuthor(), null, null);
+
+            userService.saveUser(user);
+        }
+
+//        if user already exist it will display all post related to that user
+        List<UserPost> userPostList= user.getUserPostList();
+
+        //saving post in db
+        userPostList.add(userPost);
+//        saving user to db
         return "redirect:/";
     }
 
@@ -87,12 +90,33 @@ public class PostController {
     }
 
 
+    @PostMapping("/updatedPost/{postId}")
+    public String showPageToUpdatedPost(@PathVariable(value = "postId")
+                                            Long postId, Model model){
+
+        UserPost userPost = postService.getPostById(postId);
+//        model.addAttribute("userPost", userPost);
+        postService.savePost(userPost);
+        return "redirect:/";
+    }
+
+
+
     @GetMapping("/deletePost/{postId}")
     public String deletePostById(@PathVariable(value = "postId") Long postId){
         this.postService.deletePostById(postId);
         return "redirect:/";
     }
-
+//
+//    @GetMapping("/posts/{userId}")
+//    public String getPostsByUserId(@PathVariable Long userId, Model model) {
+//        User user =.findById(userId).orElse(null);
+//        if (user != null) {
+//            List<UserPost> posts = postService.findByUser(userId);
+//            model.addAttribute("posts", posts);
+//        }
+//        return "users/user-profile-dashboard";
+//    }
 
 
 //    Image related methods
