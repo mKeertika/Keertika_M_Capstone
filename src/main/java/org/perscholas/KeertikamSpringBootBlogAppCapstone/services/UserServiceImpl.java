@@ -33,26 +33,27 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public List<User> getAllUser() {
-        List allUsers = userRepository.findAll();
+        List<User> allUsers = userRepository.findAll();
+
         return allUsers;
     }
 
     @Override
     public void saveUser(User user) {
+
+        // Check if the user already exists
+//        if (userRepository.findByEmail()) {
+//            throw new IllegalArgumentException("User with this email already exists.");
+//        }
+
 //        save to user repo in DB
-//        userRepository.save(user);
-
-        // Check if the user already exists based on unique attributes (e.g., email)
-        if (userExists(user.getEmail())) {
-            throw new IllegalArgumentException("User with this email already exists.");
-        }
-
+        userRepository.save(user);
     }
 
     private boolean userExists(String email) {
         // Check if the user exists based on the email
-        // userRepository.findByEmail(email) != null;
-        return false;
+        User userByEmail = userRepository.findByEmail(email);
+        return userByEmail!=null;
     }
 
 
@@ -69,7 +70,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User getUserByEmail(String email) {
-
 
         return userRepository.findByEmail(email);
     }

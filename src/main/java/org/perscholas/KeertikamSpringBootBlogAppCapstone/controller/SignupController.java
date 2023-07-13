@@ -51,9 +51,7 @@ private IUserService userService;
                     "Username already exists. Please choose a different username.");
             return "signup";
         }
-        User newUser = new User();
-//        userService.saveUser(user);
-        model.addAttribute(newUser);
+        userService.saveUser(user);
         return "/users/user-profile-dashboard";
     }
 }

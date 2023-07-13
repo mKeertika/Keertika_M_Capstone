@@ -59,7 +59,8 @@
     <div class="col-12 col-md-8 mx-md-auto mt-5">
       <form th:action="@{/savePost}" th:object="${userPost}"  method="POST" >
         <div class="mb-3">
-          <input type="hidden" th:field="*{postId}" />
+                <!-- Add hidden form field to handle update -->
+          <input type="hidden" th:field="*{postId}" class="form-control" id="id">
         </div>
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>

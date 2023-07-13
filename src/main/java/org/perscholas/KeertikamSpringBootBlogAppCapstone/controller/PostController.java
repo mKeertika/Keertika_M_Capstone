@@ -1,8 +1,8 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.PostImage;
+//import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.PostImage;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostImageService;
+//import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostImageService;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class PostController {
 
     private IPostService postService;
-    private IPostImageService imageService;
+//    private IPostImageService imageService;
 
 //    Constructor
 
@@ -36,20 +36,6 @@ public class PostController {
         return "/index";
     }
 
-    @GetMapping("/about")
-    public String about() {
-        return "about";
-    }
-
-    @GetMapping("/contact")
-    public String contact() {
-        return "contact";
-    }
-
-    @GetMapping("/detail")
-    public String detailedBlog() {
-        return "inner";
-    }
 
 
 //    Already defined in user/UserController
@@ -91,14 +77,12 @@ public class PostController {
 
     @GetMapping("/updatePost/{postId}")
     public String showPageToUpdatePost(@PathVariable(value = "postId")  Long postId, Model model){
-//        UserPost userPostById = postService.getPostById(postId);
-//        model.addAttribute("userPost", userPostById);
-        UserPost updatedPost = postService.getPostById(postId);
-        updatedPost.setPostTitle(updatedPost.getPostTitle());
-        updatedPost.setContent(updatedPost.getContent());
-       // postService.savePost(updatedPost);
-        model.addAttribute(updatedPost);
 
+        // get employee from the service
+        UserPost userPost = postService.getPostById(postId);
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("userPost", userPost);
         return "/update-post";
     }
 
@@ -113,16 +97,16 @@ public class PostController {
 
 //    Image related methods
 
-        @GetMapping("/create_post/{postId}")
-        public String showBlogPost(@PathVariable Long postId, Model model) {
-            // Retrieve the Image associated with the blog post
-            PostImage img = imageService.getPostImageByUserPostId(postId);
-
-            if (img != null) {
-                // Pass the image URL to the view
-                model.addAttribute("imageUrl", img.getFilePath());
-            }
-
-            return "/index";
-}
+//        @GetMapping("/create_post/{postId}")
+//        public String showBlogPost(@PathVariable Long postId, Model model) {
+//            // Retrieve the Image associated with the blog post
+//            PostImage img = imageService.getPostImageByUserPostId(postId);
+//
+//            if (img != null) {
+//                // Pass the image URL to the view
+//                model.addAttribute("imageUrl", img.getFilePath());
+//            }
+//
+//            return "/index";
+//}
 }

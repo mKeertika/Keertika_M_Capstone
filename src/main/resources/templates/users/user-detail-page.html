@@ -65,18 +65,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr  th:each="user: ${userList}">
         <td th:text="${user.userId}"></td>
         <td th:text="${user.userName}"></td>
         <td th:text="${user.email}"></td>
         <td>
-          <a th:href="@{/users/edit/{userId}(userId=${user.userId})}" class="btn btn-primary btn-sm">Edit</a>
-          <a th:href="@{/users/delete/{userId}(userId=${user.userId})}" class="btn btn-danger btn-sm">Delete</a>
+          <a th:href="@{/editUser/{userId}(userId=${user.userId})}" class="btn btn-primary btn-sm">Edit</a>
+          <a th:href="@{/deleteUser/{userId}(userId=${user.userId})}" class="btn btn-danger btn-sm">Delete</a>
         </td>
       </tr>
     </tbody>
   </table>
-  <a href="/users" class="btn btn-primary">Back</a>
 </div>
   </div>
 </div>

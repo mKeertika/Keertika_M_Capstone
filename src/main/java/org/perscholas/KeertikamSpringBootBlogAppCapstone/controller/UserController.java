@@ -32,73 +32,77 @@ public class UserController {
     }
 
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
-        HttpSession httpSession = request.getSession();
-        httpSession.invalidate();
-        return "redirect:/";
-    }
-
-
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            return "redirect:/create-post";
+            return "redirect:/users/user-detail-page";
         }
-
-
-//        methods to deal with user display for Super Admin on User Details page
-
 //        saved to db
         userService.saveUser(user);
         return "users/user-profile-dashboard";
     }
 
+    @PostMapping("/saveUpdatedUser")
+    public String saveUpdatedUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model){
 
-    @GetMapping("/users/delete/{userId}")
-    public  String deleteUserById(@PathVariable( value="userId") Long userId){
+        if(bindingResult.hasErrors()){
+            return "users/user-detail-page";
+        }
+//        saved to db
+        userService.saveUser(user);
+        model.addAttribute("userList", userService.getAllUser());
 
-        userService.deleteUserById(userId);
-        return "/users/user-detail-page";
+        return "users/user-detail-page";
     }
 
-    @GetMapping("/users/edit/{userId}")
+    @GetMapping("/user-list")
+    public String getAllUsers(Model model){
+
+        model.addAttribute("userList",userService.getAllUser());
+        return "users/user-detail-page";
+    }
+
+
+    @GetMapping("/deleteUser/{userId}")
+    public  String deleteUserById(@PathVariable( value="userId") Long userId, Model model){
+
+        this.userService.deleteUserById(userId);
+        model.addAttribute("userList",userService.getAllUser());
+        return "users/user-detail-page";
+    }
+
+    @GetMapping("editUser/{userId}")
     public  String editUserById(@PathVariable( value="userId") Long userId, Model model){
 
         User userById = userService.getUserById(userId);
         model.addAttribute(userById);
-        return "/users/user-detail-page";
+        return "/users/edit-user-detail";
     }
-
-//    methods to deal with userPosts on user profile Dashboard
-
-    @GetMapping("/users/{userId}/userPosts")
-    public String showUserPostsByUserID(@PathVariable Long userId, Model model) {
-        User user = userService.getUserById(userId);
-        List<UserPost> userPosts = user.getUserPosts();
-        model.addAttribute("user", userPosts);
-        return "/users/user-profile-dashboard";
-    }
-
-
-    @GetMapping("/{userId}/blogs/{blogId}/edit")
-    public String editBlog(@PathVariable Long userId, @PathVariable Long postId, Model model) {
-        UserPost userPost = userService.getUserPostById(userId, postId);
-        model.addAttribute("userPost", userPost);
-        // Add necessary code to handle blog editing
-        return "edit-post";
-    }
-
-    @GetMapping("/{userId}/blogs/{userPostId}/delete")
-    public String deleteBlog(@PathVariable Long userId, @PathVariable Long userPostId) {
-        userService.deleteUserPostById(userId, userPostId);
-        // Add necessary code to handle blog deletion
-        return "redirect:/users/{userId}/blogs";
-    }
+//
+////    methods to deal with userPosts on user profile Dashboard
+//
+//    @GetMapping("/users/{userId}/userPosts")
+//    public String showUserPostsByUserID(@PathVariable Long userId, Model model) {
+//        User user = userService.getUserById(userId);
+//        List<UserPost> userPosts = user.getUserPosts();
+//        model.addAttribute("user", userPosts);
+//        return "/users/user-profile-dashboard";
+//    }
+//
+//
+//    @GetMapping("/{userId}/blogs/{blogId}/edit")
+//    public String editBlog(@PathVariable Long userId, @PathVariable Long postId, Model model) {
+//        UserPost userPost = userService.getUserPostById(userId, postId);
+//        model.addAttribute("userPost", userPost);
+//        // Add necessary code to handle blog editing
+//        return "edit-post";
+//    }
+//
+//    @GetMapping("/{userId}/blogs/{userPostId}/delete")
+//    public String deleteBlog(@PathVariable Long userId, @PathVariable Long userPostId) {
+//        userService.deleteUserPostById(userId, userPostId);
+//        // Add necessary code to handle blog deletion
+//        return "redirect:/users/{userId}/blogs";
+//    }
 }

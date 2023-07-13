@@ -1,5 +1,7 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,6 +19,7 @@ public class UserPost {
 
     private String content;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate publicationDate;
 
     private String author;

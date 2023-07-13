@@ -55,7 +55,7 @@
   <div class="row">
     <div class="container">
   <h2>Edit User Details</h2>
-  <form action="/users/update" method="post">
+  <form action="/saveUpdatedUser" th:object="${user}" method="post">
     <div class="form-group">
       <label for="userId">User ID</label>
       <input type="text" id="userId" name="userId" class="form-control" th:value="${user.userId}" readonly>
@@ -70,8 +70,7 @@
     </div><br>
 <br>
 
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a href="/users" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-primary">Update</button>
   </form>
 </div>
   </div>
