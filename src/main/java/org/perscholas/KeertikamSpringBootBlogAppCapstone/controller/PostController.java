@@ -112,8 +112,7 @@ public class PostController {
     @PostMapping("/updatedPost/{postId}")
     public String showPageToUpdatedPost(@PathVariable(value = "postId")
                                                 Long postId,
-                                        @ModelAttribute UserPost userPost,
-                                        Model model) {
+                                        @ModelAttribute UserPost userPost) {
 
 //     get student from database by id
             UserPost currentPost = postService.getPostById(postId);

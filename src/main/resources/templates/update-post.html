@@ -57,7 +57,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-8 mx-md-auto mt-5">
-      <form th:action="@{/savePost}" th:object="${userPost}"  method="POST" >
+      <form th:action="@{/updatedPost/{postId}(postId=${userPost.postId})}" th:object="${userPost}"  method="POST" >
         <div class="mb-3">
                 <!-- Add hidden form field to handle update -->
           <input type="hidden" th:field="*{postId}" class="form-control" id="id">

@@ -55,18 +55,18 @@
   <div class="row">
     <div class="container">
   <h2>Edit User Details</h2>
-  <form action="/saveUpdatedUser" th:object="${user}" method="post">
+  <form th:action="@{/saveUpdatedUser}" th:object="${user}" method="post">
     <div class="form-group">
       <label for="userId">User ID</label>
-      <input type="text" id="userId" name="userId" class="form-control" th:value="${user.userId}" readonly>
+      <input type="text" id="userId" name="userId" class="form-control" th:value="*{userId}" readonly>
     </div>
     <div class="form-group">
       <label for="userName">User Name</label>
-      <input type="text" id="userName" name="userName" class="form-control" th:value="${user.userName}">
+      <input type="text" id="userName" name="userName" class="form-control" th:value="*{userName}">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" class="form-control" th:value="${user.email}">
+      <input type="email" id="email" name="email" class="form-control" th:value="*{email}">
     </div><br>
 <br>
 

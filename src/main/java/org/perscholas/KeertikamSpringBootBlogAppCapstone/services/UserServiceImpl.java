@@ -38,7 +38,7 @@ public class UserServiceImpl implements IUserService {
 //         Check if the user already exists
         if (userRepository.findFirstByUserName(email)!=null) {
 
-//            throw new IllegalArgumentException("User with this name already exists.");
+            throw new IllegalArgumentException("User with this name already exists.");
         }
 //        save to user repo in DB
         userRepository.save(user);

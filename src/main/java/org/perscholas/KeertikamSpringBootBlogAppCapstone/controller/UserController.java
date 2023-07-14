@@ -45,12 +45,7 @@ public class UserController {
 
     @PostMapping("/saveUpdatedUser/{userId}")
     public String saveUpdatedUser(@PathVariable(value="userId") Long userId,
-                                  @ModelAttribute("user") @Valid User user,
-                                  BindingResult bindingResult, Model model){
-
-        if(bindingResult.hasErrors()){
-            return "users/user-detail-page";
-        }
+                                  @ModelAttribute("user") @Valid User user){
 
 //     get student from database by id
             User existingUser = userService.getUserById(userId);
@@ -58,7 +53,6 @@ public class UserController {
         existingUser.setUserId(userId);
         existingUser.setUserName(user.getUserName());
         existingUser.setEmail(user.getEmail());
-        existingUser.setPassword(user.getPassword());
 
 //     save updated student object
             userService.saveUser (existingUser);
