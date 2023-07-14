@@ -32,33 +32,6 @@ public class UserController {
     }
 
 
-    @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
-
-        if(bindingResult.hasErrors()){
-            return "redirect:/users/user-detail-page";
-        }
-//        saved to db
-        userService.saveUser(user);
-        return "users/user-profile-dashboard";
-    }
-
-    @PostMapping("/saveUpdatedUser/{userId}")
-    public String saveUpdatedUser(@PathVariable(value="userId") Long userId,
-                                  @ModelAttribute("user") @Valid User user){
-
-//     get student from database by id
-            User existingUser = userService.getUserById(userId);
-
-        existingUser.setUserId(userId);
-        existingUser.setUserName(user.getUserName());
-        existingUser.setEmail(user.getEmail());
-
-//     save updated student object
-            userService.saveUser (existingUser);
-            return "users/user-detail-page" ;
-        }
-
     @GetMapping("/user-list")
     public String getAllUsers(Model model){
 
@@ -91,6 +64,34 @@ public class UserController {
         List<UserPost> userPostList = user.getUserPostList();
         model.addAttribute("userPost", userPostList);
         return "/users/user-profile-dashboard";
+    }
+
+
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "redirect:/users/user-detail-page";
+        }
+//        saved to db
+        userService.saveUser(user);
+        return "users/user-profile-dashboard";
+    }
+
+    @PostMapping("/saveUpdatedUser/{userId}")
+    public String saveUpdatedUser(@PathVariable(value="userId") Long userId,
+                                  @ModelAttribute("user") @Valid User user){
+
+//     get student from database by id
+        User existingUser = userService.getUserById(userId);
+
+        existingUser.setUserId(userId);
+        existingUser.setUserName(user.getUserName());
+        existingUser.setEmail(user.getEmail());
+
+//     save updated student object
+        userService.saveExistingUser (existingUser);
+        return "redirect:/user-list" ;
     }
 
 

@@ -55,7 +55,7 @@
   <div class="row">
     <div class="container">
   <h2>Edit User Details</h2>
-  <form th:action="@{/saveUpdatedUser}" th:object="${user}" method="post">
+  <form th:action="@{/saveUpdatedUser/{userId}(userId=${user.userId})}" th:object="${user}" method="post">
     <div class="form-group">
       <label for="userId">User ID</label>
       <input type="text" id="userId" name="userId" class="form-control" th:value="*{userId}" readonly>

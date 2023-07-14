@@ -119,7 +119,7 @@ public class PostController {
             currentPost.setPostId(postId);
             currentPost.setPostTitle(userPost.getPostTitle());
             currentPost.setContent(userPost.getContent());
-            currentPost.setContent(userPost.getAuthor());
+            currentPost.setAuthor(userPost.getAuthor());
 
 //     save updated student object
             postService.savePost (currentPost);
