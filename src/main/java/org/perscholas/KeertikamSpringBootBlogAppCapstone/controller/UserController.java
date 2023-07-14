@@ -43,18 +43,27 @@ public class UserController {
         return "users/user-profile-dashboard";
     }
 
-    @PostMapping("/saveUpdatedUser")
-    public String saveUpdatedUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model){
+    @PostMapping("/saveUpdatedUser/{userId}")
+    public String saveUpdatedUser(@PathVariable(value="userId") Long userId,
+                                  @ModelAttribute("user") @Valid User user,
+                                  BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()){
             return "users/user-detail-page";
         }
-//        saved to db
-        userService.saveUser(user);
-        model.addAttribute("userList", userService.getAllUser());
 
-        return "users/user-detail-page";
-    }
+//     get student from database by id
+            User existingUser = userService.getUserById(userId);
+
+        existingUser.setUserId(userId);
+        existingUser.setUserName(user.getUserName());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setPassword(user.getPassword());
+
+//     save updated student object
+            userService.saveUser (existingUser);
+            return "users/user-detail-page" ;
+        }
 
     @GetMapping("/user-list")
     public String getAllUsers(Model model){

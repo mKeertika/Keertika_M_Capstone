@@ -49,8 +49,8 @@ public class PostServiceImpl implements IPostService {
     }
 
     @Override
-    public List<UserPost> findByUserId(User user) {
-        return null;
+    public List<UserPost> getAllUserPost() {
+        return postRepository.findAll();
     }
 
 

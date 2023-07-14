@@ -39,6 +39,10 @@ public class User {
     //  getters, and setters
 
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public String getUserName() {
         return userName;
     }

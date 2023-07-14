@@ -11,6 +11,8 @@ public interface IUserService {
 
     void saveUser(User user);
 
+    void saveExistingUser(User user);
+
     User getUserById(Long userId);
 
     User getUserByEmail(String email);
@@ -18,8 +20,4 @@ public interface IUserService {
     User getUserByUserName(String username);
 
     void deleteUserById(Long userId);
-
-    UserPost getUserPostById(Long userId, Long userPostId);
-
-    void deleteUserPostById(Long userId, Long userPostId);
 }

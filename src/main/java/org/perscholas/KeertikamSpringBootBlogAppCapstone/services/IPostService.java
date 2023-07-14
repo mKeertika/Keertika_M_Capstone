@@ -8,12 +8,11 @@ import java.util.List;
 public interface IPostService {
 
 
-
     void savePost(UserPost userPost);
 
     void deletePostById( Long postId);
 
-    List<UserPost> findByUserId(User user);
+    List<UserPost> getAllUserPost();
 
     UserPost getPostById(Long postId);
 

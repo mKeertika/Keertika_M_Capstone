@@ -112,3 +112,20 @@ label {
   
   .text-left { text-align:left}
   .text-top { text-align:top}
+  
+  .card-text.excerpt {
+  max-height: 219px; /* Set the maximum height for the excerpt */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-text.full {
+  max-height: none; /* Allow the full content to expand */
+}
+.comment {
+  margin-bottom: 20px;
+}
+
+.comment .comment-body {
+  margin-bottom: 10px;
+}

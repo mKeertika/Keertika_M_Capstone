@@ -42,7 +42,7 @@ private IUserService userService;
 
     @PostMapping("/saveNewUser")
     public String signupUser(@ModelAttribute("user") @Valid User user, Model model) {
-        User existingUser = userService.getUserByEmail(user.getEmail());
+        User existingUser = userService.getUserByUserName(user.getUserName());
 
 //        checking whether user already exist in db
         if (existingUser != null) {

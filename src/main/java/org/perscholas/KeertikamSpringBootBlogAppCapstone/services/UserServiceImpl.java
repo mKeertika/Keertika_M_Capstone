@@ -1,30 +1,22 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.services;
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.repositories.IPostRepository;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.repositories.IUserRepository;
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IUserService;
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 @Service
 public class UserServiceImpl implements IUserService {
 
+
     private final IUserRepository userRepository;
     private IPostRepository postRepository;
 
-
-//    Constructor
-
-    public UserServiceImpl(IUserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Autowired
     public UserServiceImpl(IUserRepository userRepository, IPostRepository postRepository) {
@@ -42,22 +34,21 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void saveUser(User user) {
 
-        // Check if the user already exists
-//        if (userRepository.findByEmail()) {
-//            throw new IllegalArgumentException("User with this email already exists.");
-//        }
+        String email = user.getUserName();
+//         Check if the user already exists
+        if (userRepository.findFirstByUserName(email)!=null) {
 
+//            throw new IllegalArgumentException("User with this name already exists.");
+        }
 //        save to user repo in DB
         userRepository.save(user);
     }
 
-    private boolean userExists(String email) {
-        // Check if the user exists based on the email
-        User userByEmail = userRepository.findByEmail(email);
-        return userByEmail!=null;
+    @Override
+    public void saveExistingUser(User user) {
+//        save to user repo in DB
+        userRepository.save(user);
     }
-
-
 
     @Override
     public User getUserById(Long userId) {
@@ -71,13 +62,18 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User getUserByEmail(String email) {
+        User userByEmail = userRepository.findFirstByEmail(email);
 
-        return userRepository.findByEmail(email);
+        if(userByEmail!=null){
+                throw new UserNotFoundException();
+        }
+        return userRepository.save(userByEmail);
     }
 
     @Override
     public User getUserByUserName(String userName) {
-       return  userRepository.findFirstByUserName(userName);
+
+        return  userRepository.findFirstByUserName(userName);
     }
 
     @Override
@@ -86,15 +82,4 @@ public class UserServiceImpl implements IUserService {
         userRepository.deleteById(userId);
 
     }
-
-    @Override
-    public UserPost getUserPostById(Long userId, Long userPostId) {
-        return null;
-    }
-
-    @Override
-    public void deleteUserPostById(Long userId, Long userPostId) {
-
-    }
-
 }
