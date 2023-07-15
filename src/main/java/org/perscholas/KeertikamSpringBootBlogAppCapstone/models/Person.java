@@ -26,6 +26,10 @@ public class Person {
     public Person() {
     }
 
+    public Person(String personName) {
+        this.personName = personName;
+    }
+
     //    Parameterized constructor
     public Person(String personName, String email, String password) {
         this.personName = personName;
