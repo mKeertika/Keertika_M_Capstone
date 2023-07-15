@@ -1,19 +1,17 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
 
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class User {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long personId;
 
-    private String userName;
+    private String personName;
 
     private String email;
 
@@ -25,12 +23,12 @@ public class User {
 
 
     // Constructors
-    public User() {
+    public Person() {
     }
 
     //    Parameterized constructor
-    public User(String userName, String email, String password) {
-        this.userName = userName;
+    public Person(String personName, String email, String password) {
+        this.personName = personName;
         this.email = email;
         this.password = password;
     }
@@ -39,16 +37,16 @@ public class User {
     //  getters, and setters
 
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setPersonId(Long personId) {
+        this.personId = personId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
     public String getEmail() {
@@ -67,8 +65,8 @@ public class User {
         this.password = password;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getPersonId() {
+        return personId;
     }
 
     public List<UserPost> getUserPostList() {
@@ -80,9 +78,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
+        return "Person{" +
+                "userId=" + personId +
+                ", userName='" + personName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
 //                ", userPosts=" + userPosts +

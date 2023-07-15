@@ -31,7 +31,7 @@
                     <li class="nav-item">
                         <a th:href="@{/logout}" class="nav-link active"> Log out </a>
                     </li>
-						<li class="nav-item">Hello, <span th:text="${user.userName}"></span>
+						<li class="nav-item">Hello, <span th:text="${person.personName}"></span>
 						</li>
                 </ul>
             </div>
@@ -56,15 +56,15 @@
               <h2>User Profile Dashboard</h2>
               <div class="card">
                   <div class="card-body">
-                      <h5 class="card-title">Welcome, <span th:text="${user.userName}"></span></h5>
+                      <h5 class="card-title">Welcome, <span th:text="${person.personName}"></span></h5>
                       <p class="card-text">
-                          <strong>Email:</strong> <span th:text="${user.email}"></span><br>
-                          <strong>User ID:</strong> <span th:text="${user.userId}"></span>
+                          <strong>Email:</strong> <span th:text="${person.email}"></span><br>
+                          <strong>User ID:</strong> <span th:text="${person.personId}"></span>
                       </p>
                       <p class="mt-3"><a th:href="@{/create_post}">create your blog</a> </p>
 					  
 					<div class="container">
-        <h5 class="card-title">Blogs by User: <span th:text="${user.userName}"></span></h5>
+        <h5 class="card-title">Blogs by User: <span th:text="${person.personName}"></span></h5>
 
         <table class="table">
             <thead>

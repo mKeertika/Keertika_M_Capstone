@@ -1,10 +1,11 @@
-package org.perscholas.KeertikamSpringBootBlogAppCapstone.postComments;
+package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "postcomments")
 public class PostComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

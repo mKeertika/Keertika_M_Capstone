@@ -55,19 +55,28 @@
   <div class="row">
     <div class="container">
   <h2>Edit User Details</h2>
-  <form th:action="@{/saveUpdatedUser/{userId}(userId=${user.userId})}" th:object="${user}" method="post">
+<!--        <div th:if="${#httpSession.getAttribute('message') != null}" class="alert alert-success">-->
+<!--            <h2 th:text="${#httpSession.getAttribute('message')}"></h2>-->
+<!--        </div>-->
+<!--        <div th:text="${#httpSession.removeAttribute('message')}"></div>-->
+
+  <form th:action="@{/saveUpdatedPerson/{personId}(personId=${person.personId})}" th:object="${person}" method="post">
     <div class="form-group">
-      <label for="userId">User ID</label>
-      <input type="text" id="userId" name="userId" class="form-control" th:value="*{userId}" readonly>
+      <label for="personId">User ID</label>
+      <input type="text" id="personId" name="personId" class="form-control" th:value="*{personId}" readonly>
     </div>
     <div class="form-group">
-      <label for="userName">User Name</label>
-      <input type="text" id="userName" name="userName" class="form-control" th:value="*{userName}">
+      <label for="personName">User Name</label>
+      <input type="text" id="personName" name="personName" class="form-control" th:value="*{personName}">
     </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" class="form-control" th:value="*{email}">
-    </div><br>
+      <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" th:value="*{email}">
+      </div>
+      <div class="form-group">
+          <label for="password">password</label>
+          <input type="password" id="password" name="password" class="form-control" th:value="*{password}">
+      </div><br>
 <br>
 
     <button type="submit" class="btn btn-primary">Update</button>

@@ -1,7 +1,7 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.postComments;
 
-import javax.xml.stream.events.Comment;
-import java.util.Comparator;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.PostComment;
+
 import java.util.List;
 
 public interface ICommentService {

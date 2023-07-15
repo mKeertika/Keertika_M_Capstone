@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 
 @Entity
+@Table(name = "userpost")
 public class UserPost {
 
     @Id
@@ -25,7 +26,7 @@ public class UserPost {
 //
 //    @ManyToOne
 //    @JoinColumn(name = "user_id")
-//    private User user;
+//    private Person user;
 
 
     //    Default Constructor

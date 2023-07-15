@@ -2,10 +2,10 @@ package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
 //import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.PostImage;
 
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.Person;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostService;
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IUserService;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,15 +20,16 @@ import java.util.List;
 public class PostController {
 
     private IPostService postService;
-    private IUserService userService;
+    private IPersonService personService;
 
 //    Constructor
 
-@Autowired
-    public PostController(IPostService postService, IUserService userService) {
+    @Autowired
+    public PostController(IPostService postService, IPersonService personService) {
         this.postService = postService;
-        this.userService = userService;
+        this.personService = personService;
     }
+
 
     @GetMapping("/")
     public String home(Model model) {
@@ -56,22 +57,22 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             return "redirect:/create-post";
         }
-//        checking whether user already exist
-        User user = userService.getUserByUserName(userPost.getAuthor());
+//        checking whether person already exist
+        Person person = personService.getPersonByPersonName(userPost.getAuthor());
 
 //         if not
-        if (user == null) {
-            user = new User(userPost.getAuthor(), null, null);
-            userService.saveUser(user);
+        if (person == null) {
+            person = new Person(userPost.getAuthor(), null, null);
+            personService.savePerson(person);
         }
 
-//        if user already exist it will display all post related to that user
-        List<UserPost> userPostList = user.getUserPostList();
+//        if person already exist it will display all post related to that person
+        List<UserPost> userPostList = person.getUserPostList();
 
         //saving post in db
         userPostList.add(userPost);
-        userService.saveExistingUser(user);
-        httpSession.setAttribute("userName", user.getUserName());
+        personService.saveExistingPerson(person);
+        httpSession.setAttribute("userName", person.getPersonName());
         return "redirect:/";
     }
 
@@ -80,7 +81,7 @@ public class PostController {
 //                           BindingResult bindingResult) {
 //
 //        if(bindingResult.hasErrors()){
-//            return "redirect:/users/user-detail-page";
+//            return "redirect:/persons/user-detail-page";
 //        }
 //
 //    postService.savePost(userPost);
@@ -137,7 +138,7 @@ public class PostController {
 //    public String deletePostById(@PathVariable(value = "postId") Long postId,
 //                                 HttpSession httpSession) {
 //        String userName = (String) httpSession.getAttribute("userName");
-//        User user = userService.getUserByUserName(userName);
+//        Person user = userService.getUserByUserName(userName);
 //        List<UserPost> posts = user.getUserPostList();
 //
 //        UserPost postById = postService.getPostById(postId);
@@ -149,12 +150,12 @@ public class PostController {
 //
 //    @GetMapping("/posts/{userId}")
 //    public String getPostsByUserId(@PathVariable Long userId, Model model) {
-//        User user =.findById(userId).orElse(null);
+//        Person user =.findById(userId).orElse(null);
 //        if (user != null) {
 //            List<UserPost> posts = postService.findByUser(userId);
 //            model.addAttribute("posts", posts);
 //        }
-//        return "users/user-profile-dashboard";
+//        return "persons/user-profile-dashboard";
 //    }
 
 

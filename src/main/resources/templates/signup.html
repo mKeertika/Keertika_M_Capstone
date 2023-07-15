@@ -55,12 +55,16 @@
 
 <div class="container">
     <div class="row">
-      <div class="col-12 col-md-8 mx-md-auto mt-5"> 
+      <div class="col-12 col-md-8 mx-md-auto mt-5">
+          <div th:if="${#httpSession.getAttribute('msg') != null}" class="alert alert-success">
+              <h2 th:text="${#httpSession.getAttribute('msg')}"></h2>
+          </div>
+          <div th:text="${#httpSession.removeAttribute('msg')}"></div>
 
-         <form  class="px-2 px-sm-5 py-5" th:action="@{/saveUser}" th:object="${user}"  method="POST" >
+         <form  class="px-2 px-sm-5 py-5" th:action="@{/savePerson}" th:object="${person}"  method="POST" >
 		 <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" th:field="*{userName}" class="form-control" id="username" placeholder="Enter your username">
+                <label for="personname" class="form-label">Username</label>
+                <input type="text" th:field="*{personName}" class="form-control" id="personname" placeholder="Enter your username">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>

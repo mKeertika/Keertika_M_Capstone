@@ -35,7 +35,7 @@ regular signup and login page
 
 
 ##############################################
-user:
+person:
 @Entity
 public class User {
 @Id

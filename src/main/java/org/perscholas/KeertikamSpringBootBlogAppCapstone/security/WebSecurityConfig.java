@@ -23,7 +23,7 @@
 //                        .mvcMatchers("/").permitAll()
 ////                        .mvcMatchers("/savePost").hasRole("USER")
 ////                        .mvcMatchers("/updatePost").hasRole("USER")
-//                        .mvcMatchers("/users/user-detail-page").hasRole("SUPERADMIN")
+//                        .mvcMatchers("/persons/user-detail-page").hasRole("SUPERADMIN")
 //                        .anyRequest().authenticated())
 //                .formLogin(login -> login
 //                        .loginPage("/login")

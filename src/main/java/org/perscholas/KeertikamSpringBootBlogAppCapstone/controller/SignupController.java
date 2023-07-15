@@ -1,7 +1,7 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IUserService;
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.User;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.Person;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,43 +15,43 @@ import javax.validation.Valid;
 @Controller
 public class SignupController {
 
-private IUserService userService;
+private IPersonService personService;
 
 //Constructor
     @Autowired
-    public SignupController(IUserService userService) {
-        this.userService = userService;
+    public SignupController(IPersonService personService) {
+        this.personService = personService;
     }
 
     @GetMapping("/signup")
     public String signUp(Model model) {
 
-        User newUser = new User();
-        model.addAttribute("user", newUser);
+        Person newPerson = new Person();
+        model.addAttribute("person", newPerson);
         return "signup";
     }
 
 //@GetMapping("/signup")
 //public String signupDisplay(Model model){
 //
-//    User newUser = new User();
+//    Person newUser = new Person();
 ////    adding data to user table in db
 //    model.addAttribute("user", newUser);
-//        return "/users/user-detail-page";
+//        return "/persons/user-detail-page";
 //}
 
     @PostMapping("/saveNewUser")
-    public String signupUser(@ModelAttribute("user") @Valid User user, Model model) {
-        User existingUser = userService.getUserByUserName(user.getUserName());
+    public String signupUser(@ModelAttribute("person") @Valid Person person, Model model) {
+        Person existingPerson = personService.getPersonByPersonName(person.getPersonName());
 
-//        checking whether user already exist in db
-        if (existingUser != null) {
+//        checking whether person already exist in db
+        if (existingPerson != null) {
             model.addAttribute(
                     "error",
                     "Username already exists. Please choose a different username.");
             return "signup";
         }
-        userService.saveUser(user);
-        return "/users/user-profile-dashboard";
+        personService.savePerson(person);
+        return "/persons/person-profile-dashboard";
     }
 }
