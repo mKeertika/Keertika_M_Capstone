@@ -35,7 +35,7 @@ public class PersonServiceImpl implements IPersonService {
 
         String email = person.getPersonName();
 //         Check if the person already exists
-        if (personRepository.findFirstByPersonName(email)!=null) {
+        if (personRepository.findByPersonName(email)!=null) {
 
             throw new IllegalArgumentException("Person with this name already exists.");
         }
@@ -61,7 +61,7 @@ public class PersonServiceImpl implements IPersonService {
 
     @Override
     public Person getPersonByEmail(String email) {
-        Person personByEmail = personRepository.findFirstByEmail(email);
+        Person personByEmail = personRepository.findByEmail(email);
 
         if(personByEmail !=null){
                 throw new PersonNotFoundException();
@@ -72,7 +72,7 @@ public class PersonServiceImpl implements IPersonService {
     @Override
     public Person getPersonByPersonName(String personName) {
 
-        return  personRepository.findFirstByPersonName(personName);
+        return  personRepository.findByPersonName(personName);
     }
 
     @Override

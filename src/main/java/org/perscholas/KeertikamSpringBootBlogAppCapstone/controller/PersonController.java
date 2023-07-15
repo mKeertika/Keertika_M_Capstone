@@ -73,7 +73,7 @@ public class PersonController {
 
         if((personService.getPersonByPersonName(person.getPersonName())!=null))
         {
-           httpSession.setAttribute("msg", "User already exist.");
+           httpSession.setAttribute("msg", "User already exists.");
             return "/signup";
 //            throw new PersonExistsException();
 
@@ -104,6 +104,7 @@ public class PersonController {
 
         if(existingPerson.getEmail()!=null){
             httpSession.setAttribute("message", "User with this email id already exists.");
+            existingPerson = personService.getPersonById(personId);
             return "/persons/edit-person-detail";
         }
 

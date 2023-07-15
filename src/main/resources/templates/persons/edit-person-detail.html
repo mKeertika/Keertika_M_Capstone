@@ -55,10 +55,10 @@
   <div class="row">
     <div class="container">
   <h2>Edit User Details</h2>
-<!--        <div th:if="${#httpSession.getAttribute('message') != null}" class="alert alert-success">-->
-<!--            <h2 th:text="${#httpSession.getAttribute('message')}"></h2>-->
-<!--        </div>-->
-<!--        <div th:text="${#httpSession.removeAttribute('message')}"></div>-->
+        <div th:if="${#httpSession.getAttribute('message') != null}" class="alert alert-success">
+            <h2 th:text="${#httpSession.getAttribute('message')}"></h2>
+        </div>
+        <div th:text="${#httpSession.removeAttribute('message')}"></div>
 
   <form th:action="@{/saveUpdatedPerson/{personId}(personId=${person.personId})}" th:object="${person}" method="post">
     <div class="form-group">
@@ -80,6 +80,7 @@
 <br>
 
     <button type="submit" class="btn btn-primary">Update</button>
+      <a href="/person-list" class="btn btn-primary">Back to User List</a>
   </form>
 </div>
   </div>
