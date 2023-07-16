@@ -26,9 +26,6 @@ public class Person {
     public Person() {
     }
 
-    public Person(String personName) {
-        this.personName = personName;
-    }
 
     //    Parameterized constructor
     public Person(String personName, String email, String password) {
@@ -89,5 +86,15 @@ public class Person {
                 ", password='" + password + '\'' +
 //                ", userPosts=" + userPosts +
                 '}';
+    }
+
+    public List<UserPost> getUserPostsByPersonName(String personName) {
+        List<UserPost> posts = new ArrayList<>();
+        for (UserPost userPost : userPostList) {
+            if (userPost.getAuthor().equals(personName) && userPost.getAuthor().equals(personName)) {
+                posts.add(userPost);
+            }
+        }
+        return posts;
     }
 }

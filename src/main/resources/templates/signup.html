@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,10 +56,9 @@
 <div class="container">
     <div class="row">
       <div class="col-12 col-md-8 mx-md-auto mt-5">
-          <div th:if="${#httpSession.getAttribute('msg') != null}" class="alert alert-success">
-              <h2 th:text="${#httpSession.getAttribute('msg')}"></h2>
-          </div>
-          <div th:text="${#httpSession.removeAttribute('msg')}"></div>
+          <th:block th:if="${msg}" class="alert alert-success">
+              <h2 th:text="${msg}"></h2>
+          </th:block>
 
          <form  class="px-2 px-sm-5 py-5" th:action="@{/savePerson}" th:object="${person}"  method="POST" >
 		 <div class="mb-3">

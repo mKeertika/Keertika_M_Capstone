@@ -20,8 +20,6 @@ public class PostServiceImpl implements IPostService {
 
     @Autowired
     private final IPostRepository postRepository;
-    private UserPost userPost;
-
 
     //    inserted constructor
     public PostServiceImpl(IPostRepository postRepository) {
@@ -34,7 +32,7 @@ public class PostServiceImpl implements IPostService {
     @Override
     public void savePost(UserPost userPost) {
 
-        if (userPost.getPostId() == null) {
+        if ((userPost.getPostId())!= null) {
             userPost.setPublicationDate(LocalDate.now());
         }
         postRepository.save(userPost);
@@ -68,4 +66,5 @@ public class PostServiceImpl implements IPostService {
     public Object getAllPost() {
         return postRepository.findAll();
     }
+
 }

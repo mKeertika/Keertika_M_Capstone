@@ -1,5 +1,6 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
+import org.apache.catalina.User;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.Person;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPersonService;
@@ -23,9 +24,6 @@ import java.util.List;
 public class PersonController {
 
     private IPersonService personService;
-    private Long personId;
-    private Model model;
-
 
     //    constructor
     @Autowired
@@ -65,7 +63,7 @@ public class PersonController {
     @PostMapping("/savePerson")
     public String savePerson(@ModelAttribute("person") @Valid Person person,
                              BindingResult bindingResult,
-                             HttpSession httpSession){
+                             Model model){
 
         if(bindingResult.hasErrors()){
             return "redirect:/persons/person-detail-page";
@@ -73,8 +71,8 @@ public class PersonController {
 
         if((personService.getPersonByPersonName(person.getPersonName())!=null))
         {
-           httpSession.setAttribute("msg", "User already exists.");
-            return "/signup";
+           model.addAttribute("msg", "User already exists.");
+           return "/signup";
 //            throw new PersonExistsException();
 
         } else {
@@ -97,14 +95,14 @@ public class PersonController {
     @PostMapping("/saveUpdatedPerson/{personId}")
     public String saveUpdatedPerson(@PathVariable(value="personId") Long personId,
                                   @ModelAttribute("person") @Valid Person person,
-                                    HttpSession httpSession){
+                                    Model model){
 
 //     get student from database by id
         Person existingPerson = personService.getPersonById(personId);
 
         if(existingPerson.getEmail()!=null){
-            httpSession.setAttribute("message", "User with this email id already exists.");
-            existingPerson = personService.getPersonById(personId);
+            model.addAttribute("message", "User with this name already exists.");
+            personService.getPersonById(personId);
             return "/persons/edit-person-detail";
         }
 
@@ -119,20 +117,14 @@ public class PersonController {
     }
 
 
-//
-//
-//    @GetMapping("/{personId}/blogs/{blogId}/edit")
-//    public String editBlog(@PathVariable Long personId, @PathVariable Long postId, Model model) {
-//        UserPost UserPost = PersonService.getUserPostById(personId, postId);
-//        model.addAttribute("UserPost", UserPost);
-//        // Add necessary code to handle blog editing
-//        return "edit-post";
-//    }
-//
-//    @GetMapping("/{personId}/blogs/{UserPostId}/delete")
-//    public String deleteBlog(@PathVariable Long personId, @PathVariable Long UserPostId) {
-//        PersonService.deleteUserPostById(personId, UserPostId);
-//        // Add necessary code to handle blog deletion
-//        return "redirect:/Persons/{personId}/blogs";
-//    }
+
+    @GetMapping("/person-profile-dashboard/{personId}")
+    public String demo(@PathVariable("personId") Long personId, Model model){
+        Person person = personService.getPersonById(personId);
+        model.addAttribute("person", person);
+        List<UserPost> postListByPersonId = person.getUserPostsByPersonName(person.getPersonName());
+        model.addAttribute("userPostList", postListByPersonId);
+        return ("/persons/person-profile-dashboard");
+    }
+
 }

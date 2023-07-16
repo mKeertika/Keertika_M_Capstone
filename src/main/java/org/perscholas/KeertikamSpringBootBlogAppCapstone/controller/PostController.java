@@ -2,6 +2,7 @@ package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
 //import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.PostImage;
 
+import org.apache.catalina.User;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.Person;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostService;
@@ -134,6 +135,11 @@ public class PostController {
         this.postService.deletePostById(postId);
         return "redirect:/";
     }
+
+
+
+
+
 //    @GetMapping("/deletePost/{postId}")
 //    public String deletePostById(@PathVariable(value = "postId") Long postId,
 //                                 HttpSession httpSession) {

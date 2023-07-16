@@ -68,11 +68,12 @@
     <tbody>
       <tr  th:each="person: ${personList}">
         <td th:text="${person.personId}"></td>
-        <td th:text="${person.personName}"></td>
+        <td><span th:text="${person.personName}"> demo</span></td>
         <td th:text="${person.email}"></td>
         <td>
           <a th:href="@{/editPerson/{personId}(personId=${person.personId})}" class="btn btn-primary btn-sm">Edit</a>
           <a th:href="@{/deletePerson/{personId}(personId=${person.personId})}" class="btn btn-danger btn-sm">Delete</a>
+          <a th:href="@{/person-profile-dashboard/{personId}(personId=${person.personId})}" class="btn btn-info btn-sm">See profile</a>
         </td>
       </tr>
     </tbody>

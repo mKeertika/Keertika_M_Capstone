@@ -16,14 +16,17 @@ class PersonServiceImplTest {
     @Autowired
      IPersonRepository personRepository;
 
+//    I commented below code because Sarah is already in DB now after running this code for first time,
+//    in case database has no "sarah" entry then enable below code
+
 //    @BeforeEach
 //    void setup() {
-//        Person sarah = new Person("Sarah");
+//        Person sarah = new Person("Sarah", "Sarah@gmail.com", "sarah");
 //        personRepository.save(sarah);
 //    }
 
     @Test
-     void getPersonByPersonName() {
+     void test_getPersonByPersonName_should_compare_both_object_findByPersonName() {
 
 //        Actual
         Person person = personRepository.findByPersonName("Sarah");

@@ -18,7 +18,7 @@ class IPersonRepositoryTest {
 
 
     @Test
-    void findByPersonName() {
+    void test_findByPersonName() {
 
 //        Actual
         Person person = personRepository.findByPersonName("Jisha");
@@ -29,7 +29,7 @@ class IPersonRepositoryTest {
     }
 
     @Test
-    void findByEmail() {
+    void test_findByEmail_test_return() {
 
 //        Actual
         Person person = personRepository.findByEmail("jisha@gmail.com");
