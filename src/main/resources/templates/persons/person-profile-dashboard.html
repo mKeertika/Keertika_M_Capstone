@@ -29,10 +29,17 @@
 						  <a class="nav-link userPost-link active" th:href="@{/create_post}">Create Post</a>
 						</li>
                     <li class="nav-item">
-                        <a th:href="@{/logout}" class="nav-link active"> Log out </a>
+                        <a class="nav-link active" th:href="@{/signup}">Signup</a>
                     </li>
-						<li class="nav-item">Hello, <span th:text="${person.personName}"></span>
-						</li>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link active" th:href="@{/login}">Login</a>-->
+<!--                    </li>-->
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/person-list}">UserList</a>
+                    </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a th:href="@{/logout}" class="nav-link active"> Log out </a>-->
+<!--                    </li>-->
                 </ul>
             </div>
         </nav>
@@ -64,7 +71,7 @@
                       <p class="mt-3"><a th:href="@{/create_post}">create your blog</a> </p>
 					  
 					<div class="container">
-        <h5 class="card-title">Blogs by User: <span th:text="${person.personName}"></span></h5>
+        <h5 style="display:none" class="card-title">Blogs by <span th:text="${person.personName}"></span></h5>
 
 
 <!--                        Displaying All Posts by this user -->

@@ -4,7 +4,9 @@ package org.perscholas.KeertikamSpringBootBlogAppCapstone.controller;
 
 import org.apache.catalina.User;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.Person;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.PostComment;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
+import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.ICommentService;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPostService;
 import org.perscholas.KeertikamSpringBootBlogAppCapstone.services.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ public class PostController {
 
     private IPostService postService;
     private IPersonService personService;
+    private ICommentService commentService;
 
 //    Constructor
 
@@ -108,6 +111,9 @@ public class PostController {
 
         UserPost postById = postService.getPostById(postId);
         model.addAttribute("post", postById);
+
+//        List<PostComment> allComments = commentService.getAllComments();
+//        model.addAttribute("comments", allComments);
         return "/detail-post-page";
     }
 

@@ -1,7 +1,5 @@
 package org.perscholas.KeertikamSpringBootBlogAppCapstone.models;
 
-import org.perscholas.KeertikamSpringBootBlogAppCapstone.models.UserPost;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,7 +7,7 @@ import javax.persistence.*;
 public class PostComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long commentId;
 
     @Column(nullable = false)
     private String content;
@@ -32,8 +30,8 @@ public class PostComment {
 //    getters and setters
 
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getCommentId() {
+        return commentId;
     }
 
     public String getContent() {
@@ -58,7 +56,7 @@ public class PostComment {
     @Override
     public String toString() {
         return "PostComment{" +
-                "id=" + id +
+                "id=" + commentId +
                 ", content='" + content + '\'' +
                 ", userPost=" + userPost +
                 '}';
